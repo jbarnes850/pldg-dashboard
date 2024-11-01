@@ -10,53 +10,53 @@ interface Props {
 }
 
 export default function EngagementChart({ data }: Props) {
+  const hasData = Array.isArray(data) && data.length > 0;
+  
+  React.useEffect(() => {
+    console.log('EngagementChart received data:', {
+      hasData,
+      dataLength: data?.length,
+      firstItem: data?.[0]
+    });
+  }, [data, hasData]);
+
+  const chartData = React.useMemo(() => {
+    if (!hasData) return [];
+    return data.map(week => ({
+      week: week.week,
+      'High Engagement': week['High Engagement'] || 0,
+      'Medium Engagement': week['Medium Engagement'] || 0,
+      'Low Engagement': week['Low Engagement'] || 0
+    }));
+  }, [data, hasData]);
+
   return (
-    <Card className="h-[500px]">
+    <Card className="h-[500px] border-2 border-gray-200/20 shadow-md dark:border-gray-800/20">
       <CardHeader>
         <CardTitle>Engagement Trends</CardTitle>
-        <CardDescription>Weekly engagement levels</CardDescription>
+        <CardDescription>
+          {hasData ? 'Weekly engagement levels' : 'No engagement data available'}
+        </CardDescription>
       </CardHeader>
-      <CardContent className="h-[400px] pt-4">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 10, right: 30, left: 10, bottom: 10 }}>
-            <defs>
-              <linearGradient id="highEngagement" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#4CAF50" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#4CAF50" stopOpacity={0.2}/>
-              </linearGradient>
-              <linearGradient id="mediumEngagement" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FFC107" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#FFC107" stopOpacity={0.2}/>
-              </linearGradient>
-              <linearGradient id="lowEngagement" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#FF5722" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#FF5722" stopOpacity={0.2}/>
-              </linearGradient>
-            </defs>
-            <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-            <XAxis 
-              dataKey="week" 
-              tick={{ fontSize: 12 }}
-              tickMargin={10}
-            />
-            <YAxis 
-              tick={{ fontSize: 12 }}
-              tickMargin={10}
-            />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                borderRadius: '6px',
-                padding: '8px',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }}
-            />
-            <Legend wrapperStyle={{ paddingTop: '20px' }}/>
-            <Bar dataKey="High Engagement" stackId="a" fill="url(#highEngagement)" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="Medium Engagement" stackId="a" fill="url(#mediumEngagement)" />
-            <Bar dataKey="Low Engagement" stackId="a" fill="url(#lowEngagement)" />
-          </BarChart>
-        </ResponsiveContainer>
+      <CardContent className="h-[400px]">
+        {!hasData ? (
+          <div className="h-full flex items-center justify-center text-muted-foreground">
+            No data to display
+          </div>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="week" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="High Engagement" fill="#4CAF50" />
+              <Bar dataKey="Medium Engagement" fill="#FFC107" />
+              <Bar dataKey="Low Engagement" fill="#FF5722" />
+            </BarChart>
+          </ResponsiveContainer>
+        )}
       </CardContent>
     </Card>
   );

@@ -1,121 +1,167 @@
-import { EngagementData, TechPartnerMetrics, ProcessedData, GitHubData } from '../types/dashboard';
-import * as z from 'zod';
+import { z } from 'zod';
+import { ProcessedData, GitHubData } from '@/types/dashboard';
 
-// GitHub data validation schema
-export const githubDataSchema = z.object({
-  project: z.object({
-    user: z.object({
-      projectV2: z.object({
-        items: z.object({
-          nodes: z.array(z.object({
-            id: z.string(),
-            fieldValues: z.object({
-              nodes: z.array(z.object({
-                field: z.object({ name: z.string() }),
-                text: z.string()
-              }))
-            }),
-            content: z.object({
-              title: z.string(),
-              state: z.enum(['OPEN', 'CLOSED']),
-              createdAt: z.string(),
-              closedAt: z.string().nullable()
-            }).nullable()
-          }))
-        })
-      })
-    })
+export const processedDataSchema = z.object({
+  weeklyChange: z.number(),
+  activeContributors: z.number(),
+  totalContributions: z.number(),
+  programHealth: z.object({
+    npsScore: z.number(),
+    engagementRate: z.number(),
+    activeTechPartners: z.number()
   }),
-  issues: z.array(z.object({
-    title: z.string(),
-    state: z.string(),
-    created_at: z.string(),
-    closed_at: z.string().nullable(),
-    status: z.string().optional()
+  keyHighlights: z.object({
+    activeContributorsAcrossTechPartners: z.string(),
+    totalContributions: z.string(),
+    positiveFeedback: z.string(),
+    weeklyContributions: z.string()
+  }),
+  topPerformers: z.array(z.object({
+    name: z.string(),
+    totalIssues: z.number(),
+    avgEngagement: z.number(),
+    engagementScore: z.number(),
+    issuesCompleted: z.number(),
+    techPartner: z.string()
   })),
-  statusGroups: z.object({
-    todo: z.number(),
+  actionItems: z.array(z.object({
+    type: z.string(),
+    title: z.string(),
+    description: z.string(),
+    action: z.string()
+  })),
+  engagementTrends: z.array(z.object({
+    week: z.string(),
+    'High Engagement': z.number(),
+    'Medium Engagement': z.number(),
+    'Low Engagement': z.number(),
+    total: z.number()
+  })),
+  technicalProgress: z.array(z.object({
+    week: z.string(),
+    newIssues: z.number(),
     inProgress: z.number(),
-    done: z.number()
+    completed: z.number(),
+    total: z.number()
+  })),
+  issueMetrics: z.array(z.object({
+    week: z.string(),
+    open: z.number(),
+    closed: z.number(),
+    total: z.number()
+  })),
+  feedbackSentiment: z.object({
+    positive: z.number(),
+    neutral: z.number(),
+    negative: z.number()
+  }),
+  techPartnerMetrics: z.array(z.object({
+    partner: z.string(),
+    totalIssues: z.number(),
+    activeContributors: z.number(),
+    avgIssuesPerContributor: z.number(),
+    collaborationScore: z.number(),
+    avgEngagement: z.number()
+  })),
+  techPartnerPerformance: z.array(z.object({
+    partner: z.string(),
+    issues: z.number()
+  })),
+  contributorGrowth: z.array(z.object({
+    week: z.string(),
+    newContributors: z.number(),
+    returningContributors: z.number(),
+    totalActive: z.number()
+  })),
+  githubMetrics: z.object({
+    inProgress: z.number(),
+    done: z.number(),
+    totalIssues: z.number(),
+    openIssues: z.number(),
+    recentActivity: z.number(),
+    avgTimeToClose: z.number(),
+    contributorCount: z.number()
   })
-}) satisfies z.ZodType<GitHubData>;
-
-// Engagement data validation schema
-export const engagementDataSchema = z.object({
-  'Program Week': z.string(),
-  'Engagement Participation ': z.string(),
-  'Tech Partner Collaboration?': z.string(),
-  'Which Tech Partner': z.string(),
-  'How many issues, PRs, or projects this week?': z.string(),
-  'Name': z.string(),
-  'PLDG Feedback': z.string().optional(),
-  'How likely are you to recommend the PLDG to others?': z.string().optional()
 });
 
-// Add this function to help with type checking
-export function isGitHubData(data: unknown): data is GitHubData {
+export function validateGitHubData(data: any): GitHubData | null {
   try {
-    githubDataSchema.parse(data);
+    return {
+      project: data.project,
+      issues: data.issues,
+      statusGroups: {
+        todo: data.statusGroups?.todo || 0,
+        inProgress: data.statusGroups?.inProgress || 0,
+        done: data.statusGroups?.done || 0
+      },
+      metrics: {
+        totalIssues: data.metrics?.totalIssues || 0,
+        openIssues: data.metrics?.openIssues || 0,
+        recentActivity: data.metrics?.recentActivity || 0,
+        avgTimeToClose: data.metrics?.avgTimeToClose || 0,
+        contributorCount: data.metrics?.contributorCount || 0
+      }
+    };
+  } catch (error) {
+    console.error('GitHub data validation failed:', error);
+    return null;
+  }
+}
+
+export function isValidProcessedData(data: any): data is ProcessedData {
+  try {
+    processedDataSchema.parse(data);
     return true;
-  } catch {
+  } catch (error) {
     return false;
   }
 }
 
-// Update the validateGitHubData function to be more strongly typed
-export function validateGitHubData(data: unknown): GitHubData | null {
+export function isValidEnhancedData(data: any): data is ProcessedData {
   try {
-    return githubDataSchema.parse(data);
+    processedDataSchema.parse(data);
+    return true;
   } catch (error) {
-    console.error('GitHub data validation error:', error);
-    return null;
+    return false;
   }
 }
 
-export function validateEngagementData(data: unknown) {
+const insightsDataSchema = z.object({
+  engagementMetrics: z.object({
+    trends: z.array(z.object({
+      week: z.string(),
+      'High Engagement': z.number(),
+      'Medium Engagement': z.number(),
+      'Low Engagement': z.number(),
+      total: z.number()
+    })).optional(),
+  }),
+  techPartnerMetrics: z.array(z.object({
+    partner: z.string(),
+    totalIssues: z.number(),
+    activeContributors: z.number(),
+    avgEngagement: z.number()
+  })),
+  contributorMetrics: z.object({
+    activeContributors: z.number(),
+    totalContributions: z.number(),
+    weeklyChange: z.number()
+  }),
+  githubMetrics: z.object({
+    totalIssues: z.number(),
+    openIssues: z.number(),
+    recentActivity: z.number(),
+    avgTimeToClose: z.number(),
+    contributorCount: z.number()
+  })
+});
+
+export function validateInsightsData(data: unknown) {
   try {
-    return engagementDataSchema.array().parse(data);
+    const validatedData = insightsDataSchema.parse(data);
+    return validatedData;
   } catch (error) {
-    console.error('Engagement data validation error:', error);
+    console.error('Insights data validation failed:', error);
     return null;
   }
-}
-
-export function sanitizeNumber(value: string): number {
-  const num = parseInt(value);
-  return isNaN(num) ? 0 : num;
-}
-
-export function validateMetrics(metrics: TechPartnerMetrics[]) {
-  return metrics.map(metric => ({
-    ...metric,
-    totalIssues: Math.max(0, metric.totalIssues),
-    activeContributors: Math.max(0, metric.activeContributors),
-    avgIssuesPerContributor: Math.max(0, metric.avgIssuesPerContributor),
-    collaborationScore: Math.max(0, Math.min(100, metric.collaborationScore))
-  }));
-}
-
-export function validateRealTimeData(data: unknown) {
-  const timestamp = Date.now();
-  const validated = validateGitHubData(data);
-  
-  if (!validated) {
-    console.error(`Data validation failed at ${new Date(timestamp).toISOString()}`);
-    return null;
-  }
-
-  return {
-    ...validated,
-    timestamp,
-    isStale: false
-  };
-}
-
-export function isValidGitHubData(data: any): data is GitHubData {
-  return (
-    data &&
-    Array.isArray(data.issues) &&
-    data.project?.user?.projectV2?.items?.nodes !== undefined
-  );
 }

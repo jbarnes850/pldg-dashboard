@@ -1,6 +1,27 @@
 import { NextResponse } from 'next/server';
 import { default as fetch } from 'node-fetch';
 
+interface AirtableRecord {
+  id: string;
+  createdTime: string;
+  fields: {
+    'Program Week'?: string;
+    'Name'?: string;
+    'Engagement Participation '?: string;
+    'Tech Partner Collaboration?'?: string;
+    'Which Tech Partner'?: string | string[];
+    'How many issues, PRs, or projects this week?'?: string;
+    'How likely are you to recommend the PLDG to others?'?: string;
+    'PLDG Feedback'?: string;
+    'Issue Title 1'?: string;
+    'Issue Link 1'?: string;
+  };
+}
+
+interface AirtableResponse {
+  records: AirtableRecord[];
+}
+
 export async function GET() {
   try {
     console.log('Airtable API route called');

@@ -6,51 +6,46 @@ interface Props {
 }
 
 export default function TopPerformersTable({ data }: Props) {
-  // Normalize and combine duplicate performers
+  React.useEffect(() => {
+    console.log('TopPerformersTable received data:', {
+      hasData: Array.isArray(data) && data.length > 0,
+      rawData: data
+    });
+  }, [data]);
+
   const normalizedPerformers = React.useMemo(() => {
-    // Create a map to store normalized names
     const nameMap = new Map<string, TopPerformer>();
 
     data.forEach(performer => {
-      // Normalize the name (lowercase, trim spaces)
+      if (!performer.name) return;
+      
       const normalizedName = performer.name.toLowerCase().trim();
       
-      // Special cases for known duplicates
-      const finalName = 
-        normalizedName.includes('nick') && normalizedName.includes('lionis') ? 'Nick Lionis' :
-        normalizedName.includes('manu') && normalizedName.includes('sheel') ? 'Manu Sheel Gupta' :
-        performer.name;
-
-      if (nameMap.has(finalName)) {
-        // Combine metrics for existing performer
-        const existing = nameMap.get(finalName)!;
-        nameMap.set(finalName, {
-          name: finalName,
+      if (nameMap.has(normalizedName)) {
+        const existing = nameMap.get(normalizedName)!;
+        nameMap.set(normalizedName, {
+          name: performer.name,
           totalIssues: existing.totalIssues + performer.totalIssues,
-          // Take the average of the averages
-          avgEngagement: (existing.avgEngagement + performer.avgEngagement) / 2
+          avgEngagement: (existing.avgEngagement + performer.avgEngagement) / 2,
+          issuesCompleted: existing.issuesCompleted + (performer.issuesCompleted || 0),
+          engagementScore: (existing.engagementScore + performer.engagementScore) / 2,
+          techPartner: performer.techPartner || existing.techPartner
         });
       } else {
-        // Add new performer with original name
-        nameMap.set(finalName, {
-          name: finalName,
+        nameMap.set(normalizedName, {
+          name: performer.name,
           totalIssues: performer.totalIssues,
-          avgEngagement: performer.avgEngagement
+          avgEngagement: performer.avgEngagement,
+          issuesCompleted: performer.issuesCompleted || 0,
+          engagementScore: performer.engagementScore,
+          techPartner: performer.techPartner || 'Unknown'
         });
       }
     });
 
-    // Convert map to array and sort
     return Array.from(nameMap.values())
-      .sort((a, b) => {
-        // Sort by total issues first
-        if (b.totalIssues !== a.totalIssues) {
-          return b.totalIssues - a.totalIssues;
-        }
-        // If total issues are equal, sort by average engagement
-        return b.avgEngagement - a.avgEngagement;
-      })
-      .slice(0, 10); // Get top 10
+      .sort((a, b) => b.totalIssues - a.totalIssues)
+      .slice(0, 10);
   }, [data]);
 
   return (

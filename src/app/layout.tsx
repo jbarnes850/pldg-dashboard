@@ -5,7 +5,10 @@ import { Footer } from '@/components/layout/Footer'
 import { Providers } from '@/components/providers/Providers'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap'
+})
 
 export const metadata = {
   title: 'Developer Engagement Dashboard',
@@ -18,13 +21,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col bg-background">
             <Header />
-            <main className="flex-1">
-              <ErrorBoundary>
+            <main className="flex-1 container mx-auto px-4 py-8">
+              <ErrorBoundary fallback={
+                <div className="p-4 text-red-600">
+                  <h2 className="text-lg font-semibold">Something went wrong</h2>
+                  <p className="text-sm">Please try refreshing the page</p>
+                </div>
+              }>
                 {children}
               </ErrorBoundary>
             </main>

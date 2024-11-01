@@ -1,30 +1,37 @@
 "use client";
 
 import * as React from 'react';
-import { ProcessedData, ActionItem } from '@/types/dashboard';
-import { useProcessedData } from '@/lib/data-processing';
+import { ProcessedData, EnhancedProcessedData } from '@/types/dashboard';
+import { useDashboardData } from '@/hooks/useDashboardData';
 
 interface DashboardSystemContextType {
-  data: ProcessedData | null;
+  data: EnhancedProcessedData | null;
   isLoading: boolean;
   isError: boolean;
+  error: string | null;
   refresh: () => Promise<void>;
 }
 
 const DashboardSystemContext = React.createContext<DashboardSystemContextType | undefined>(undefined);
 
 export function DashboardSystemProvider({ children }: { children: React.ReactNode }) {
-  const { data, isLoading, isError, refresh } = useProcessedData();
-
-  // Add type assertion to ensure data matches ProcessedData type
-  const typedData = data as ProcessedData | null;
-
+  const result = useDashboardData();
+  
   const value = React.useMemo(() => ({
-    data: typedData,
-    isLoading,
-    isError,
-    refresh
-  }), [typedData, isLoading, isError, refresh]);
+    data: result.status === 'success' ? {
+      ...result.data,
+      engagementTrends: result.data.engagementTrends || [],
+      technicalProgress: result.data.technicalProgress || [],
+      techPartnerPerformance: result.data.techPartnerPerformance || [],
+      topPerformers: result.data.topPerformers || []
+    } as EnhancedProcessedData : null,
+    isLoading: result.status === 'loading',
+    isError: result.status === 'error',
+    error: result.status === 'error' ? String(result.error) : null,
+    refresh: async () => {
+      window.location.reload();
+    }
+  }), [result]);
 
   return (
     <DashboardSystemContext.Provider value={value}>

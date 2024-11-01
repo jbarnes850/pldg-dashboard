@@ -5,10 +5,46 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
+// Add rate limiting
+let lastCallTime = 0;
+const RATE_LIMIT_WINDOW = 10000; // 10 seconds
+
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
-    
+    // Check rate limit
+    const now = Date.now();
+    if (now - lastCallTime < RATE_LIMIT_WINDOW) {
+      return NextResponse.json({ 
+        error: 'Too many requests',
+        success: false 
+      }, { 
+        status: 429 
+      });
+    }
+    lastCallTime = now;
+
+    // Validate request body exists
+    if (!request.body) {
+      return NextResponse.json({ 
+        error: 'Missing request body',
+        success: false 
+      }, { 
+        status: 400 
+      });
+    }
+
+    let data;
+    try {
+      data = await request.json();
+    } catch (error) {
+      return NextResponse.json({ 
+        error: 'Invalid JSON in request body',
+        success: false 
+      }, { 
+        status: 400 
+      });
+    }
+
     const response = await anthropic.messages.create({
       model: 'claude-3-5-sonnet-20241022',
       max_tokens: 1000,
@@ -45,6 +81,11 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error('Error generating insights:', error);
-    return NextResponse.json({ error: 'Failed to generate insights', success: false }, { status: 500 });
+    return NextResponse.json({ 
+      error: 'Failed to generate insights',
+      success: false 
+    }, { 
+      status: 500 
+    });
   }
 } 

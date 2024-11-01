@@ -1,33 +1,59 @@
 import { NextResponse } from 'next/server';
-import { GitHubData } from '@/types/dashboard';
+import { Octokit } from '@octokit/rest';
 
 const PROJECT_ID = '7';
 const USERNAME = 'kt-wawro';
 
-// Add column mapping
+// column mapping
 const COLUMN_STATUS = {
   'In Progress': 'In Progress',
-  'In Review': 'In Progress', // Count "In Review" as "In Progress"
+  'In Review': 'In Progress',
   'Done': 'Done',
   'Backlog': 'Todo',
-  'Tirage': 'Todo'
+  'Triage': 'Todo'
 } as const;
 
-interface ProjectItem {
+interface ProjectV2Item {
   id: string;
   fieldValues: {
     nodes: Array<{
-      field: { name: string };
-      text: string;
+      field?: {
+        name: string;
+      };
+      name?: string;
+      date?: string;
+      text?: string;
     }>;
   };
   content: {
     title: string;
     state: string;
+    number: number;
+    url: string;
     createdAt: string;
     closedAt: string | null;
+    labels: {
+      nodes: Array<{
+        name: string;
+        color: string;
+      }>;
+    };
+    assignees: {
+      nodes: Array<{
+        login: string;
+        avatarUrl: string;
+      }>;
+    };
+    milestone?: {
+      title: string;
+      dueOn: string;
+    };
   } | null;
 }
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN
+});
 
 export async function GET() {
   try {
@@ -37,43 +63,48 @@ export async function GET() {
       throw new Error('GitHub token not found');
     }
 
-    console.log('Fetching GitHub Project data...');
-
-    const headers = {
-      'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,
-      'Accept': 'application/vnd.github.v3+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'PLDG-Dashboard'
-    };
-
-    const projectQuery = {
-      query: `
-        query {
-          user(login: "${USERNAME}") {
-            projectV2(number: ${PROJECT_ID}) {
-              items(first: 100) {
-                nodes {
-                  id
-                  fieldValues(first: 8) {
-                    nodes {
-                      ... on ProjectV2ItemFieldSingleSelectValue {
-                        field { name }
-                        text
+    const query = `
+      query {
+        user(login: "${USERNAME}") {
+          projectV2(number: ${PROJECT_ID}) {
+            items(first: 100) {
+              nodes {
+                id
+                fieldValues(first: 8) {
+                  nodes {
+                    ... on ProjectV2ItemFieldSingleSelectValue {
+                      field {
+                        ... on ProjectV2SingleSelectField {
+                          name
+                        }
                       }
+                      name
                     }
                   }
-                  content {
-                    ... on Issue {
-                      title
-                      state
-                      createdAt
-                      closedAt
+                }
+                content {
+                  ... on Issue {
+                    title
+                    state
+                    number
+                    url
+                    createdAt
+                    closedAt
+                    labels(first: 10) {
+                      nodes {
+                        name
+                        color
+                      }
                     }
-                    ... on PullRequest {
+                    assignees(first: 5) {
+                      nodes {
+                        login
+                        avatarUrl
+                      }
+                    }
+                    milestone {
                       title
-                      state
-                      createdAt
-                      closedAt
+                      dueOn
                     }
                   }
                 }
@@ -81,62 +112,112 @@ export async function GET() {
             }
           }
         }
-      `
-    };
+      }
+    `;
 
-    const response = await fetch('https://api.github.com/graphql', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(projectQuery)
+    const response = await octokit.graphql<{
+      user: {
+        projectV2: {
+          items: {
+            nodes: ProjectV2Item[];
+          };
+        };
+      };
+    }>(query);
+
+    console.log('GitHub API response shape:', {
+      hasUser: !!response?.user,
+      hasProjectV2: !!response?.user?.projectV2,
+      hasItems: !!response?.user?.projectV2?.items,
+      hasNodes: !!response?.user?.projectV2?.items?.nodes,
+      nodesLength: response?.user?.projectV2?.items?.nodes?.length,
+      sampleNode: response?.user?.projectV2?.items?.nodes?.[0] ? {
+        ...response.user.projectV2.items.nodes[0],
+        id: '[redacted]',
+        content: response.user.projectV2.items.nodes[0].content ? {
+          ...response.user.projectV2.items.nodes[0].content,
+          title: '[redacted]'
+        } : null
+      } : null
     });
 
-    if (!response.ok) {
-      throw new Error(`GitHub API error: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    const items = (data.data?.user?.projectV2?.items?.nodes || []) as ProjectItem[];
-
-    // Group items by status
-    const statusCounts = {
-      todo: items.filter(item => getItemStatus(item) === 'Todo').length,
-      inProgress: items.filter(item => getItemStatus(item) === 'In Progress').length,
-      done: items.filter(item => getItemStatus(item) === 'Done').length // Changed from 'completed' to 'done'
-    };
-
-    console.log('Status counts:', statusCounts);
-
-    const responseData: GitHubData = {
-      project: data.data,
-      issues: items.map(item => ({
+    const items = response?.user?.projectV2?.items?.nodes || [];
+    const issues = items
+      .filter(item => item?.content)
+      .map(item => ({
+        id: item.id,
         title: item.content?.title || '',
         state: item.content?.state || '',
+        status: getItemStatus(item),
+        number: item.content?.number || 0,
+        url: item.content?.url || '',
         created_at: item.content?.createdAt || '',
         closed_at: item.content?.closedAt || null,
-        status: getItemStatus(item)
-      })),
-      statusGroups: statusCounts // Now matches the GitHubData type
+        labels: item.content?.labels?.nodes || [],
+        assignees: item.content?.assignees?.nodes || [],
+        milestone: item.content?.milestone || null
+      }));
+
+    const statusGroups = {
+      todo: issues.filter(issue => issue.status === 'Todo').length,
+      inProgress: issues.filter(issue => issue.status === 'In Progress').length,
+      done: issues.filter(issue => issue.status === 'Done').length
     };
 
-    return NextResponse.json(responseData);
+    const metrics = {
+      totalIssues: issues.length,
+      openIssues: issues.filter(issue => issue.state === 'OPEN').length,
+      recentActivity: issues.filter(issue => {
+        const date = new Date(issue.created_at);
+        const now = new Date();
+        const twoWeeksAgo = new Date(now.setDate(now.getDate() - 14));
+        return date >= twoWeeksAgo;
+      }).length,
+      avgTimeToClose: calculateAvgTimeToClose(issues),
+      contributorCount: new Set(issues.flatMap(issue => 
+        issue.assignees.map(assignee => assignee.login)
+      )).size
+    };
+
+    console.log('Processed GitHub data:', {
+      totalIssues: issues.length,
+      statusGroups,
+      metrics,
+      sampleIssue: issues[0] ? {
+        ...issues[0],
+        id: '[redacted]',
+        title: '[redacted]'
+      } : null
+    });
+
+    return NextResponse.json({
+      issues,
+      statusGroups,
+      metrics
+    });
   } catch (error) {
     console.error('GitHub API error:', error);
-    return NextResponse.json({ 
-      project: { user: { projectV2: { items: { nodes: [] } } } },
-      issues: [],
-      statusGroups: {
-        todo: 0,
-        inProgress: 0,
-        done: 0 // Changed from 'completed' to 'done'
-      }
-    } as GitHubData);
+    return NextResponse.json({ error: 'Failed to fetch GitHub data' }, { status: 500 });
   }
 }
 
-function getItemStatus(item: ProjectItem): string {
+function getItemStatus(item: ProjectV2Item): string {
   const statusField = item.fieldValues.nodes.find(node => 
-    node.field.name.toLowerCase() === 'status'
+    node.field?.name === 'Status'
   );
-  const columnStatus = statusField?.text || 'Todo';
-  return COLUMN_STATUS[columnStatus as keyof typeof COLUMN_STATUS] || 'Todo';
+  const status = statusField?.name || 'Todo';
+  return COLUMN_STATUS[status as keyof typeof COLUMN_STATUS] || 'Todo';
+}
+
+function calculateAvgTimeToClose(issues: any[]) {
+  const closedIssues = issues.filter(issue => issue.closed_at);
+  if (closedIssues.length === 0) return 0;
+
+  const totalTime = closedIssues.reduce((sum, issue) => {
+    const created = new Date(issue.created_at);
+    const closed = new Date(issue.closed_at!);
+    return sum + (closed.getTime() - created.getTime());
+  }, 0);
+
+  return Math.round(totalTime / (closedIssues.length * 86400000)); // Convert to days
 } 

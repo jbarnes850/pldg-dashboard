@@ -4,6 +4,7 @@ import React from 'react';
 
 interface Props {
   children: React.ReactNode;
+  fallback?: React.ReactNode;
 }
 
 interface State {
@@ -17,30 +18,20 @@ export class ErrorBoundary extends React.Component<Props, State> {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(error: Error) {
     return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Dashboard error:', error, errorInfo);
+    console.error('Component Error:', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              {this.state.error?.message}
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="text-primary hover:underline"
-            >
-              Refresh Page
-            </button>
-          </div>
+      return this.props.fallback || (
+        <div className="p-4 text-red-600">
+          <h2>Something went wrong.</h2>
+          <pre className="text-sm">{this.state.error?.message}</pre>
         </div>
       );
     }

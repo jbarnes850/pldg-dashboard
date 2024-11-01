@@ -6,7 +6,11 @@ import {
   RawIssueMetric, 
   ProcessedData, 
   EnhancedProcessedData,
-  EngagementData
+  EngagementData,
+  EngagementTrend,
+  TopPerformer,
+  GitHubMetrics,
+  TechPartnerPerformance
 } from '../types/dashboard'
 import { processDataWithAI } from './ai';
 
@@ -14,199 +18,236 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export async function processEngagementData(rawData: EngagementData[]): Promise<EnhancedProcessedData> {
-  // Sort data by week
-  const sortedData = _.sortBy(rawData, 'Program Week');
-  const engagementByWeek = _.groupBy(sortedData, 'Program Week');
+// Add this function at the top with other helper functions
+function processEngagementTrends(data: EngagementData[]): EngagementTrend[] {
+  const weeklyData = data.reduce((acc, record) => {
+    const week = record['Program Week'];
+    if (!week) return acc;
 
-  // Calculate NPS score
-  const npsScore = calculateNPSScore(sortedData);
+    if (!acc[week]) {
+      acc[week] = {
+        'High Engagement': 0,
+        'Medium Engagement': 0,
+        'Low Engagement': 0,
+        total: 0
+      };
+    }
 
-  // Process engagement trends
-  const engagementTrends = Object.entries(engagementByWeek)
-    .map(([week, entries]) => ({
-      week: week.replace(/\(.*?\)/, '').trim(),
-      'High Engagement': entries.filter(e => e['Engagement Participation ']?.includes('3 -')).length,
-      'Medium Engagement': entries.filter(e => e['Engagement Participation ']?.includes('2 -')).length,
-      'Low Engagement': entries.filter(e => e['Engagement Participation ']?.includes('1 -')).length,
-      total: entries.length
+    const engagement = parseInt(record['How likely are you to recommend the PLDG to others?'] || '0');
+    if (engagement >= 7) acc[week]['High Engagement']++;
+    else if (engagement >= 5) acc[week]['Medium Engagement']++;
+    else if (engagement > 0) acc[week]['Low Engagement']++;
+    acc[week].total++;
+
+    return acc;
+  }, {} as Record<string, Omit<EngagementTrend, 'week'>>);
+
+  return Object.entries(weeklyData).map(([week, data]) => ({
+    week,
+    ...data
+  }));
+}
+
+export async function processEngagementData(airtableData: EngagementData[], githubMetrics: GitHubMetrics): Promise<ProcessedData> {
+  try {
+    console.log('Processing engagement data:', {
+      airtableRecords: airtableData.length,
+      githubMetrics,
+      sampleAirtableRecord: airtableData[0] ? {
+        ...airtableData[0],
+        'Name': '[redacted]',
+        'Contributor Name': '[redacted]'
+      } : null
+    });
+
+    // Process engagement trends
+    const engagementTrends = processEngagementTrends(airtableData);
+    console.log('Processed engagement trends:', {
+      trendsCount: engagementTrends.length,
+      sampleTrend: engagementTrends[0]
+    });
+
+    // Process technical progress with default values
+    const technicalProgress = engagementTrends.map(weekData => ({
+      week: weekData.week,
+      newIssues: githubMetrics.recentActivity || 0,
+      inProgress: githubMetrics.inProgress || 0,
+      completed: githubMetrics.done || 0,
+      total: githubMetrics.totalIssues || 0
     }));
 
-  // Process tech partner performance
-  const techPartnerPerformance = _(sortedData)
-    .groupBy('Which Tech Partner')
-    .map((items, partner) => ({
+    // Group data by tech partner
+    const techPartnerData = airtableData.reduce((acc, record) => {
+      const partner = record['Tech Partner'];
+      if (!partner) return acc;
+
+      if (!acc[partner]) {
+        acc[partner] = {
+          issues: 0,
+          contributors: new Set<string>(),
+          engagement: [] as number[]
+        };
+      }
+
+      // Count issues
+      const issueCount = parseInt(record['How many issues, PRs, or projects this week?'] || '0');
+      acc[partner].issues += issueCount;
+
+      // Track contributors
+      if (record['Contributor Name']) {
+        acc[partner].contributors.add(record['Contributor Name']);
+      }
+
+      // Track engagement
+      const engagement = parseInt(record['How likely are you to recommend the PLDG to others?'] || '0');
+      if (engagement) {
+        acc[partner].engagement.push(engagement);
+      }
+
+      return acc;
+    }, {} as Record<string, { issues: number; contributors: Set<string>; engagement: number[] }>);
+
+    // Process tech partner performance
+    const techPartnerPerformance = Object.entries(techPartnerData).map(([partner, data]) => ({
       partner,
-      issues: _.sumBy(items, item => 
-        parseInt(item['How many issues, PRs, or projects this week?'] || '0')
-      )
-    }))
-    .value();
-
-  // Process tech partner metrics
-  const techPartnerMetrics = _(sortedData)
-    .groupBy('Which Tech Partner')
-    .map((items, partner) => ({
-      partner,
-      totalIssues: _.sumBy(items, item => 
-        parseInt(item['How many issues, PRs, or projects this week?'] || '0')
-      ),
-      activeContributors: new Set(items.map(item => item.Name)).size,
-      avgIssuesPerContributor: 0,
-      collaborationScore: 0
-    }))
-    .value();
-
-  // Process feedback sentiment
-  const feedbackSentiment = {
-    positive: sortedData.filter(e => e['PLDG Feedback']?.toLowerCase().includes('great') || 
-                                   e['PLDG Feedback']?.toLowerCase().includes('good')).length,
-    neutral: sortedData.filter(e => e['PLDG Feedback'] && 
-                                  !e['PLDG Feedback'].toLowerCase().includes('great') && 
-                                  !e['PLDG Feedback'].toLowerCase().includes('good') &&
-                                  !e['PLDG Feedback'].toLowerCase().includes('bad')).length,
-    negative: sortedData.filter(e => e['PLDG Feedback']?.toLowerCase().includes('bad')).length
-  };
-
-  // Process technical progress
-  const technicalProgress = Object.entries(engagementByWeek)
-    .map(([week, entries]) => ({
-      week: week.replace(/\(.*?\)/, '').trim(),
-      'Total Issues': _.sumBy(entries, entry => 
-        parseInt(entry['How many issues, PRs, or projects this week?'] || '0')
-      )
+      issues: data.issues
     }));
+    console.log('Processed tech partner performance:', techPartnerPerformance);
 
-  // Calculate top performers
-  const topPerformers = _(sortedData)
-    .groupBy('Name')
-    .map((entries, name) => ({
-      name,
-      totalIssues: _.sumBy(entries, e => parseInt(e['How many issues, PRs, or projects this week?'] || '0')),
-      avgEngagement: _.meanBy(entries, e => {
-        const participation = e['Engagement Participation ']?.trim() || '';
-        return participation.startsWith('3') ? 3 :
-               participation.startsWith('2') ? 2 :
-               participation.startsWith('1') ? 1 : 0;
-      })
-    }))
-    .filter(p => p.totalIssues > 0)
-    .orderBy(['totalIssues', 'avgEngagement'], ['desc', 'desc'])
-    .value();
+    // Process top performers
+    const topPerformers = processTopPerformers(airtableData);
+    console.log('Processed top performers:', topPerformers);
 
-  // Process issue metrics
-  const issueMetrics = processRawIssueMetrics(sortedData);
+    // Calculate key metrics
+    const activeContributors = new Set(airtableData.map(r => r.Name)).size;
+    const totalContributions = airtableData.length;
+    const positiveFeedback = airtableData.filter(r => 
+      r['PLDG Feedback']?.toLowerCase().includes('great') || 
+      r['PLDG Feedback']?.toLowerCase().includes('good') ||
+      r['PLDG Feedback']?.toLowerCase().includes('excellent')
+    ).length;
+    const weeklyChange = calculateWeeklyChange(airtableData);
 
-  // Calculate program health metrics
-  const programHealth = {
-    npsScore,
-    engagementRate: calculateEngagementRate(sortedData),
-    activeTechPartners: new Set(
-      sortedData.flatMap(entry => 
-        Array.isArray(entry['Which Tech Partner']) 
-          ? entry['Which Tech Partner']
-          : entry['Which Tech Partner']?.split(',').map(p => p.trim()) ?? []
-      )
-    ).size
-  };
+    // Ensure all required fields are present with proper types
+    const processedData: ProcessedData = {
+      weeklyChange,
+      activeContributors,
+      totalContributions,
+      programHealth: {
+        npsScore: calculateNPSScore(airtableData),
+        engagementRate: calculateEngagementRate(airtableData),
+        activeTechPartners: Object.keys(techPartnerData).length
+      },
+      keyHighlights: {
+        activeContributorsAcrossTechPartners: `${activeContributors} across ${techPartnerPerformance.length}`,
+        totalContributions: `${totalContributions} total`,
+        positiveFeedback: `${positiveFeedback} positive`,
+        weeklyContributions: `${weeklyChange}% change`
+      },
+      topPerformers,
+      actionItems: [],
+      engagementTrends,
+      technicalProgress,
+      issueMetrics: processRawIssueMetrics(airtableData),
+      feedbackSentiment: calculateSentiment(airtableData),
+      techPartnerMetrics: Object.entries(techPartnerData).map(([partner, data]) => ({
+        partner,
+        totalIssues: data.issues,
+        activeContributors: data.contributors.size,
+        avgIssuesPerContributor: Math.round(data.issues / data.contributors.size),
+        collaborationScore: calculateCollaborationScore(data.contributors.size, data.issues),
+        avgEngagement: calculateAvgEngagement(data.engagement)
+      })),
+      techPartnerPerformance,
+      contributorGrowth: [],
+      githubMetrics
+    };
 
-  // Calculate key metrics before using them
-  const activeContributors = new Set(sortedData.map(e => e.Name)).size;
-  
-  const activeTechPartners = new Set(
-    sortedData.flatMap(entry => 
-      Array.isArray(entry['Which Tech Partner']) 
-        ? entry['Which Tech Partner']
-        : entry['Which Tech Partner']?.split(',').map(p => p.trim()) ?? []
-    )
-  ).size;
+    console.log('Final processed data:', {
+      hasEngagementTrends: !!processedData.engagementTrends?.length,
+      hasTechnicalProgress: !!processedData.technicalProgress?.length,
+      hasPartnerPerformance: !!processedData.techPartnerPerformance?.length,
+      hasTopPerformers: !!processedData.topPerformers?.length,
+      metrics: {
+        weeklyChange: processedData.weeklyChange,
+        activeContributors: processedData.activeContributors,
+        totalContributions: processedData.totalContributions
+      }
+    });
 
-  const totalContributions = sortedData.reduce((sum, entry) => 
-    sum + parseInt(entry['How many issues, PRs, or projects this week?'] || '0'), 0
-  );
+    return processedData;
+  } catch (error) {
+    console.error('Error in processEngagementData:', error);
+    throw error;
+  }
+}
 
-  const positiveFeedback = sortedData.filter(entry => 
-    entry['PLDG Feedback']?.toLowerCase().includes('great') || 
-    entry['PLDG Feedback']?.toLowerCase().includes('good')
+function calculateNPS(data: any[]): number {
+  const total = data.length;
+  if (!total) return 0;
+  const promoters = data.filter(r => r.NPS >= 9).length;
+  const detractors = data.filter(r => r.NPS <= 6).length;
+  return Math.round(((promoters - detractors) / total) * 100);
+}
+
+function calculateEngagementRate(data: EngagementData[]): number {
+  const totalEntries = data.length;
+  if (totalEntries === 0) return 0;
+
+  const activeEntries = data.filter(entry => 
+    entry['Engagement Participation ']?.includes('3 -') || 
+    entry['Engagement Participation ']?.includes('2 -')
   ).length;
 
-  // Calculate weekly change
-  const currentWeekData = sortedData.filter(entry => 
-    entry['Program Week'] === sortedData[sortedData.length - 1]['Program Week']
-  );
-  const previousWeekData = sortedData.filter(entry => 
-    entry['Program Week'] === sortedData[sortedData.length - 2]?.['Program Week']
-  );
+  return Math.round((activeEntries / totalEntries) * 100);
+}
 
-  const currentWeekContributions = currentWeekData.reduce((sum, entry) => 
-    sum + parseInt(entry['How many issues, PRs, or projects this week?'] || '0'), 0
-  );
-  const previousWeekContributions = previousWeekData.reduce((sum, entry) => 
-    sum + parseInt(entry['How many issues, PRs, or projects this week?'] || '0'), 0
-  );
+function calculateWeeklyChange(data: EngagementData[]): number {
+  const weeks = _(data)
+    .groupBy('Program Week')
+    .mapValues(entries => 
+      entries.reduce((sum, entry) => 
+        sum + (parseInt(entry['How many issues, PRs, or projects this week?'] || '0')), 0
+      )
+    )
+    .value();
 
-  const weeklyChange = previousWeekContributions 
-    ? Math.round(((currentWeekContributions - previousWeekContributions) / previousWeekContributions) * 100)
-    : 0;
+  const weeksList = Object.entries(weeks)
+    .sort((a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime());
 
-  // Update baseProcessedData with calculated metrics
-  const baseProcessedData: ProcessedData = {
-    weeklyChange,
-    activeContributors,
-    totalContributions,
-    keyHighlights: {
-      activeContributorsAcrossTechPartners: `${activeContributors} across ${activeTechPartners}`,
-      totalContributions: `${totalContributions} total`,
-      positiveFeedback: `${positiveFeedback} positive`,
-      weeklyContributions: `${weeklyChange}% change`
-    },
-    actionItems: [], // This will be populated later
-    engagementTrends,
-    techPartnerPerformance,
-    techPartnerMetrics,
-    topPerformers,
-    technicalProgress,
-    issueMetrics,
-    feedbackSentiment,
-    contributorGrowth: [],
-    programHealth
+  if (weeksList.length < 2) return 0;
+
+  const [currentWeek, previousWeek] = weeksList;
+  const currentValue = currentWeek[1] as number;
+  const previousValue = previousWeek[1] as number;
+
+  return previousValue ? Math.round(((currentValue - previousValue) / previousValue) * 100) : 0;
+}
+
+function calculateSentiment(data: EngagementData[]) {
+  return {
+    positive: data.filter(r => 
+      r['PLDG Feedback']?.toLowerCase().includes('great') || 
+      r['PLDG Feedback']?.toLowerCase().includes('good') ||
+      r['PLDG Feedback']?.toLowerCase().includes('excellent')
+    ).length,
+    negative: data.filter(r => 
+      r['PLDG Feedback']?.toLowerCase().includes('bad') ||
+      r['PLDG Feedback']?.toLowerCase().includes('poor') ||
+      r['PLDG Feedback']?.toLowerCase().includes('issue')
+    ).length,
+    neutral: data.filter(r => {
+      const feedback = r['PLDG Feedback']?.toLowerCase();
+      return feedback && 
+        !feedback.includes('great') && 
+        !feedback.includes('good') && 
+        !feedback.includes('excellent') &&
+        !feedback.includes('bad') &&
+        !feedback.includes('poor') &&
+        !feedback.includes('issue');
+    }).length
   };
-  
-  try {
-    const enhancedData = await processDataWithAI(baseProcessedData);
-    return {
-      ...baseProcessedData,
-      insights: {
-        keyTrends: enhancedData.insights?.keyTrends || [],
-        areasOfConcern: enhancedData.insights?.areasOfConcern || [],
-        recommendations: enhancedData.insights?.recommendations || [],
-        achievements: enhancedData.insights?.achievements || [],
-        metrics: {
-          engagementScore: enhancedData.insights?.metrics.engagementScore || 0,
-          technicalProgress: enhancedData.insights?.metrics.technicalProgress || 0,
-          collaborationIndex: enhancedData.insights?.metrics.collaborationIndex || 0,
-        }
-      }
-    };
-  } catch (error) {
-    console.error('AI processing error:', error);
-    // Return with default insights
-    return {
-      ...baseProcessedData,
-      insights: {
-        keyTrends: [],
-        areasOfConcern: [],
-        recommendations: [],
-        achievements: [],
-        metrics: {
-          engagementScore: 0,
-          technicalProgress: 0,
-          collaborationIndex: 0
-        }
-      }
-    };
-  }
-} 
+}
 
 export function calculateTechnicalProgress(data: ProcessedData): number {
   if (!data.issueMetrics.length) return 0;
@@ -257,6 +298,15 @@ export function processData(rawData: any): ProcessedData {
       npsScore: rawData.programHealth?.npsScore || 0,
       engagementRate: rawData.programHealth?.engagementRate || 0,
       activeTechPartners: rawData.programHealth?.activeTechPartners || 0
+    },
+    githubMetrics: {
+      inProgress: rawData.githubMetrics?.inProgress || 0,
+      done: rawData.githubMetrics?.done || 0,
+      totalIssues: rawData.githubMetrics?.totalIssues || 0,
+      openIssues: rawData.githubMetrics?.openIssues || 0,
+      recentActivity: rawData.githubMetrics?.recentActivity || 0,
+      avgTimeToClose: rawData.githubMetrics?.avgTimeToClose || 0,
+      contributorCount: rawData.githubMetrics?.contributorCount || 0
     }
   };
 }
@@ -406,18 +456,6 @@ export function formatMetricName(key: string): string {
 }
 
 // Add helper functions for program health calculations
-function calculateEngagementRate(data: EngagementData[]): number {
-  const totalEntries = data.length;
-  if (totalEntries === 0) return 0;
-
-  const activeEntries = data.filter(entry => 
-    entry['Engagement Participation ']?.includes('3 -') || 
-    entry['Engagement Participation ']?.includes('2 -')
-  ).length;
-
-  return Math.round((activeEntries / totalEntries) * 100);
-}
-
 function calculateNPSScore(data: EngagementData[]): number {
   const scores = data
     .map(entry => parseInt(entry['How likely are you to recommend the PLDG to others?'] || '0'))
@@ -437,4 +475,81 @@ function parseTechPartners(techPartner: string | string[]): string[] {
     return techPartner;
   }
   return techPartner?.split(',').map(p => p.trim()) ?? [];
+}
+
+// Add this function near the other calculation helpers
+function calculateAvgEngagement(engagementScores: number[]): number {
+  if (!engagementScores.length) return 0;
+  return Math.round(engagementScores.reduce((sum, score) => sum + score, 0) / engagementScores.length);
+}
+
+// Add helper function for collaboration score
+function calculateCollaborationScore(contributors: number, issues: number): number {
+  if (contributors === 0) return 0;
+  // Basic score based on average issues per contributor with a cap
+  const score = Math.min((issues / contributors) * 20, 100);
+  return Math.round(score);
+}
+
+// Remove the duplicate calculateEngagementScore function and keep one version
+function calculateEngagementScoreFromTrends(data: ProcessedData): number {
+  const recentEngagement = data.engagementTrends[data.engagementTrends.length - 1];
+  const engagementRate = (recentEngagement['High Engagement'] / recentEngagement.total) * 100;
+  return Math.round((engagementRate + data.programHealth.npsScore) / 2);
+}
+
+function calculateEngagementScoreFromScores(scores: number[]): number {
+  if (!scores.length) return 0;
+  
+  // Calculate weighted score based on engagement levels
+  const weightedSum = scores.reduce((sum, score) => {
+    if (score >= 8) return sum + 3; // High engagement
+    if (score >= 5) return sum + 2; // Medium engagement
+    return sum + 1; // Low engagement
+  }, 0);
+
+  // Normalize to 0-100 scale
+  return Math.round((weightedSum / (scores.length * 3)) * 100);
+}
+
+function processTopPerformers(data: EngagementData[]): TopPerformer[] {
+  const contributorData = data.reduce((acc, record) => {
+    const name = record['Contributor Name'];
+    if (!name) return acc;
+
+    if (!acc[name]) {
+      acc[name] = {
+        totalIssues: 0,
+        engagementScores: [] as number[],
+        techPartner: record['Tech Partner'] || 'Unknown',
+        issuesCompleted: 0
+      };
+    }
+
+    const issues = parseInt(record['How many issues, PRs, or projects this week?'] || '0');
+    acc[name].totalIssues += issues;
+    
+    const engagement = parseInt(record['How likely are you to recommend the PLDG to others?'] || '0');
+    if (engagement) acc[name].engagementScores.push(engagement);
+
+    return acc;
+  }, {} as Record<string, {
+    totalIssues: number;
+    engagementScores: number[];
+    techPartner: string;
+    issuesCompleted: number;
+  }>);
+
+  return Object.entries(contributorData)
+    .map(([name, data]) => ({
+      name,
+      totalIssues: data.totalIssues,
+      avgEngagement: data.engagementScores.length ? 
+        data.engagementScores.reduce((a, b) => a + b, 0) / data.engagementScores.length : 0,
+      engagementScore: calculateEngagementScoreFromScores(data.engagementScores), // Fixed function call
+      issuesCompleted: data.issuesCompleted,
+      techPartner: data.techPartner
+    }))
+    .sort((a, b) => b.engagementScore - a.engagementScore)
+    .slice(0, 10);
 }

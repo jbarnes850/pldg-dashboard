@@ -1,95 +1,146 @@
 'use client';
 
 import * as React from 'react';
-import { Suspense } from 'react';
-import { useDashboardSystem } from '@/context/DashboardSystemContext';
+import { useDashboardSystem } from '@/lib/system';
+import { LoadingCard } from '@/components/ui/loading-card';
+import { Card } from '@/components/ui/card';
 import ExecutiveSummary from './ExecutiveSummary';
-import { ActionableInsights } from './ActionableInsights';
 import EngagementChart from './EngagementChart';
 import TechnicalProgressChart from './TechnicalProgressChart';
-import { LoadingCard } from '@/components/ui/loading-card';
-import { LastUpdated } from './LastUpdated';
 import TopPerformersTable from './TopPerformersTable';
 import TechPartnerChart from './TechPartnerChart';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Loader2 } from 'lucide-react';
+import { ActionableInsights } from './ActionableInsights';
+import { EnhancedProcessedData } from '@/types/dashboard';
+import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 export default function DeveloperEngagementDashboard() {
-  const { data, isLoading } = useDashboardSystem();
+  const { data, isLoading, isError, error } = useDashboardSystem();
+
+  React.useEffect(() => {
+    console.log('Dashboard Data:', {
+      hasData: !!data,
+      isLoading,
+      isError,
+      error,
+      dataStructure: data ? {
+        hasEngagementTrends: !!data.engagementTrends?.length,
+        hasTechnicalProgress: !!data.technicalProgress?.length,
+        hasTechPartners: !!data.techPartnerPerformance?.length,
+        hasTopPerformers: !!data.topPerformers?.length
+      } : null
+    });
+  }, [data, isLoading, isError, error]);
 
   const handleExport = React.useCallback(() => {
-    if (!data) return;
-    const exportData = JSON.stringify(data, null, 2);
-    const blob = new Blob([exportData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `pldg-data-${new Date().toISOString().split('T')[0]}.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    // Implement export functionality
+  }, []);
+
+  const safeData = React.useMemo(() => {
+    console.log('Creating safeData with:', data);
+    const defaultData = {
+      engagementTrends: [],
+      technicalProgress: [],
+      techPartnerPerformance: [],
+      topPerformers: [],
+      programHealth: {
+        npsScore: 0,
+        engagementRate: 0,
+        activeTechPartners: 0
+      },
+      githubMetrics: {
+        inProgress: 0,
+        done: 0,
+        totalIssues: 0,
+        openIssues: 0,
+        recentActivity: 0,
+        avgTimeToClose: 0,
+        contributorCount: 0
+      },
+      insights: {
+        keyTrends: [],
+        areasOfConcern: [],
+        recommendations: [],
+        achievements: [],
+        metrics: {
+          engagementScore: 0,
+          technicalProgress: 0,
+          collaborationIndex: 0
+        }
+      },
+      keyHighlights: {
+        activeContributorsAcrossTechPartners: '0 across 0',
+        totalContributions: '0 total',
+        positiveFeedback: '0 positive',
+        weeklyContributions: '0% change'
+      },
+      actionItems: [],
+      feedbackSentiment: {
+        positive: 0,
+        negative: 0,
+        neutral: 0
+      },
+      activeContributors: 0,
+      totalContributions: 0,
+      weeklyChange: 0,
+      contributorGrowth: [],
+      issueMetrics: [],
+      techPartnerMetrics: []
+    };
+
+    return data ? {
+      ...defaultData,
+      ...data
+    } : defaultData;
   }, [data]);
 
-  if (isLoading || !data) {
-    return <LoadingCard />;
+  if (isLoading) {
+    return (
+      <div className="space-y-8">
+        <LoadingCard />
+      </div>
+    );
+  }
+
+  if (isError || !data) {
+    return (
+      <Card className="p-6">
+        <div className="text-center">
+          <h2 className="text-lg font-semibold text-red-600">Error Loading Dashboard</h2>
+          <p className="text-sm text-gray-600">{error || 'Failed to load dashboard data'}</p>
+        </div>
+      </Card>
+    );
   }
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <header className="mb-8 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-2xl p-6 text-white shadow-xl">
-        <div className="flex justify-between items-start">
-          <div>
-            <h1 className="text-3xl font-bold">PLDG Developer Engagement</h1>
-            <p className="mt-2 text-indigo-100">Real-time insights and engagement metrics</p>
-          </div>
-          <LastUpdated />
-        </div>
-      </header>
-
-      {/* Executive Summary - Most important metrics */}
-      <div className="mb-6">
-        <ExecutiveSummary data={data} onExport={handleExport} />
-      </div>
-
-      {/* Action Items - Critical attention areas */}
-      <div className="mb-6">
-        <ActionableInsights data={data} />
-      </div>
-
-      {/* Key Charts - Side by side */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        <Suspense fallback={<LoadingCard />}>
-          <EngagementChart data={data.engagementTrends} />
-        </Suspense>
-        <Suspense fallback={<LoadingCard />}>
+    <div className="space-y-8">
+      <ErrorBoundary>
+        <ExecutiveSummary data={safeData} onExport={handleExport} />
+      </ErrorBoundary>
+      
+      <ErrorBoundary>
+        <ActionableInsights data={safeData} />
+      </ErrorBoundary>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ErrorBoundary>
+          <EngagementChart data={safeData.engagementTrends} />
+        </ErrorBoundary>
+        <ErrorBoundary>
           <TechnicalProgressChart 
-            data={data.technicalProgress} 
-            githubData={{
-              inProgress: data.issueMetrics[0]?.open || 0,
-              done: data.issueMetrics[0]?.closed || 0
-            }}
+            data={safeData.technicalProgress} 
+            githubData={safeData.githubMetrics} 
           />
-        </Suspense>
+        </ErrorBoundary>
       </div>
-
-      {/* Tech Partner Overview */}
-      <div className="mb-6">
-        <TechPartnerChart data={data.techPartnerPerformance} />
-      </div>
-
-      {/* Top Performers */}
-      <div className="mb-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Top Contributors</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <TopPerformersTable data={data.topPerformers} />
-          </CardContent>
-        </Card>
-      </div>
+      
+      <ErrorBoundary>
+        <TechPartnerChart data={safeData.techPartnerPerformance} />
+      </ErrorBoundary>
+      
+      <ErrorBoundary>
+        <TopPerformersTable data={safeData.topPerformers} />
+      </ErrorBoundary>
     </div>
   );
-} 
+}

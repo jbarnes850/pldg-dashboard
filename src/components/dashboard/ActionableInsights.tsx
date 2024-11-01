@@ -53,7 +53,7 @@ export function ActionableInsights({ data }: { data: ProcessedData }) {
   }, [data]);
 
   return (
-    <Card>
+    <Card className="border-2 border-gray-200/20 shadow-md dark:border-gray-800/20">
       <CardHeader>
         <CardTitle>Action Items</CardTitle>
         <CardDescription>Key areas requiring attention</CardDescription>

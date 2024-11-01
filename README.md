@@ -4,48 +4,61 @@ A real-time analytics dashboard for tracking developer engagement, technical pro
 
 ## Features
 
-- 📊 Real-time engagement metrics visualization
-- 🤝 Tech partner collaboration tracking
-- 📈 Technical progress monitoring
-- 🏆 Top performer analytics
-- 🤖 AI-powered insights generation
-- 📑 Executive summary reporting
-- 🔄 GitHub integration for issue tracking
+- 📊 Real-time metrics visualization
+  - Engagement rates and NPS scores
+  - Technical progress tracking
+  - Contributor activity metrics
+  - Tech partner collaboration insights
+
+- 🔄 Efficient Data Management
+  - Supabase integration for persistence
+  - Smart caching with TTL
+  - Automatic data revalidation
+  - Error resilient operations
+
+- 📈 Advanced Analytics
+  - Week-over-week comparisons
+  - Historical trend analysis
+  - Performance metrics calculation
+  - Tech partner engagement tracking
 
 ## Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Frontend**: Next.js 15 with App Router
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS + shadcn/ui
-- **Charts**: Recharts
-- **Data Processing**: Lodash
-- **Validation**: Zod
-- **API Integration**:
-  - Airtable API (Engagement Data)
-  - GitHub GraphQL API (Issue Tracking)
-  - Octokit REST API (Repository Data)
+- **Data Storage**: Supabase
+- **Data Sources**: 
+  - Airtable (engagement surveys)
+  - GitHub API (technical metrics)
+- **State Management**: SWR
+- **Type Validation**: Zod
+- **Styling**: Tailwind CSS, shadcn/ui
 
 ## Getting Started
 
-Clone the repository
+1. Clone the repository
 
-Install dependencies:
+   ```bash
+   git clone https://github.com/jbarnes850/pldg-dashboard.git
+   ```
 
-```bash
-npm install
-```
+2. Install dependencies
 
-Set up environment variables:
+   ```bash
+   npm install
+   ```
 
-```bash
-cp .env.example .env.local
-```
+3. Run the development server
 
-Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run dev
-```
+4. Open the app in the browser
+
+   ```bash
+   http://localhost:3000
+   ```
 
 ## Project Structure
 
@@ -66,20 +79,23 @@ src/
 
 ## Data Flow
 
-1. **Data Sources**:
-   - Airtable: Weekly engagement surveys
-   - GitHub: Issue tracking and project data
+1. **Data Collection**
+   - Airtable integration with retry logic
+   - GitHub integration with rate limiting
+   - Smart caching to reduce API calls
+   - Error handling with fallbacks
 
-2. **Processing Pipeline**:
-   - Raw data fetching
-   - Data validation (Zod schemas)
-   - Metric calculations
-   - Insight generation
+2. **Processing Pipeline**
+   - Type-safe data validation (Zod)
+   - Metric calculations with error boundaries
+   - Historical trend analysis
+   - Real-time data updates
 
-3. **Real-time Updates**:
-   - Automatic refresh intervals
-   - On-demand data updates
-   - Error handling and retry logic
+3. **Storage Layer**
+   - Supabase tables for metrics history
+   - Cached responses with TTL
+   - Automatic cache invalidation
+   - Error resilient operations
 
 ## Contributing
 
@@ -113,10 +129,10 @@ MIT License
 - ✅ Basic trend visualization
 - ✅ AI-powered insights
 
-### Phase 2 (Planned)
+### Phase 2 (In Progress)
 
 1. **Historical Data Storage**
-   - Implement database for metric persistence
+   - ✅ Implement database for metric persistence
    - Track status changes over time
    - Enable historical trend analysis
    - Add date-range filtering for all metrics

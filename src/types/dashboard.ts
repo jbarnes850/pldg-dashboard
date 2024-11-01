@@ -1,5 +1,3 @@
-import { DateRange } from 'react-day-picker';
-
 export type ActionItemType = 'warning' | 'opportunity' | 'success';
 
 export interface ActionItem {
@@ -10,17 +8,17 @@ export interface ActionItem {
 }
 
 export interface EngagementData {
-  Name: string;
-  'Program Week': string;
-  'Engagement Participation ': string;
-  'Tech Partner Collaboration?': string;
+  'Tech Partner': string;
+  'Contributor Name': string;
   'Which Tech Partner': string | string[];
-  'How many issues, PRs, or projects this week?': string;
-  'How likely are you to recommend the PLDG to others?': string;
+  'Program Week': string;
+  'Engagement Participation '?: string;
+  'How many issues, PRs, or projects this week?'?: string;
+  'How likely are you to recommend the PLDG to others?'?: string;
   'PLDG Feedback'?: string;
   'Issue Title 1'?: string;
   'Issue Link 1'?: string;
-  'Which session(s) did you find most informative or impactful, and why?'?: string;
+  Name: string;
 }
 
 export interface IssueMetrics {
@@ -46,6 +44,9 @@ export interface TopPerformer {
   name: string;
   totalIssues: number;
   avgEngagement: number;
+  engagementScore: number;
+  issuesCompleted: number;
+  techPartner: string;
 }
 
 export interface TechPartnerMetrics {
@@ -54,6 +55,7 @@ export interface TechPartnerMetrics {
   activeContributors: number;
   avgIssuesPerContributor: number;
   collaborationScore: number;
+  avgEngagement: number;
 }
 
 export interface TechPartnerPerformance {
@@ -71,14 +73,27 @@ export interface EngagementTrend {
 
 export interface TechnicalProgress {
   week: string;
-  'Total Issues': number;
+  newIssues: number;
+  inProgress: number;
+  completed: number;
+  total: number;
 }
 
 export interface ContributorGrowth {
   week: string;
+  contributors: number;
   newContributors: number;
-  returningContributors: number;
-  totalActive: number;
+  churnedContributors: number;
+}
+
+export interface GitHubMetrics {
+  inProgress: number;
+  done: number;
+  totalIssues: number;
+  openIssues: number;
+  recentActivity: number;
+  avgTimeToClose: number;
+  contributorCount: number;
 }
 
 export interface ProcessedData {
@@ -100,29 +115,26 @@ export interface ProcessedData {
   actionItems: ActionItem[];
   engagementTrends: EngagementTrend[];
   technicalProgress: TechnicalProgress[];
+  techPartnerPerformance: TechPartnerPerformance[];
+  githubMetrics: GitHubMetrics;
+  techPartnerMetrics: TechPartnerMetrics[];
+  contributorGrowth: ContributorGrowth[];
   issueMetrics: IssueMetrics[];
   feedbackSentiment: FeedbackSentiment;
-  techPartnerMetrics: TechPartnerMetrics[];
-  techPartnerPerformance: TechPartnerPerformance[];
-  contributorGrowth: ContributorGrowth[];
-}
-
-export interface AIMetrics {
-  engagementScore: number;
-  technicalProgress: number;
-  collaborationIndex: number;
-}
-
-export interface AIInsights {
-  keyTrends: string[];
-  areasOfConcern: string[];
-  recommendations: string[];
-  achievements: string[];
-  metrics: AIMetrics;
 }
 
 export interface EnhancedProcessedData extends ProcessedData {
-  insights: AIInsights;
+  insights: {
+    keyTrends: string[];
+    areasOfConcern: string[];
+    recommendations: string[];
+    achievements: string[];
+    metrics: {
+      engagementScore: number;
+      technicalProgress: number;
+      collaborationIndex: number;
+    };
+  };
 }
 
 export interface GitHubData {
@@ -132,11 +144,38 @@ export interface GitHubData {
         items: {
           nodes: Array<{
             id: string;
+            fieldValues: {
+              nodes: Array<{
+                field: { name: string };
+                name?: string;
+                value?: string;
+                date?: string;
+                text?: string;
+              }>;
+            };
             content: {
               title: string;
               state: string;
               createdAt: string;
               closedAt: string | null;
+              number: number;
+              url: string;
+              labels?: {
+                nodes: Array<{
+                  name: string;
+                  color: string;
+                }>;
+              };
+              assignees?: {
+                nodes: Array<{
+                  login: string;
+                  avatarUrl: string;
+                }>;
+              };
+              milestone?: {
+                title: string;
+                dueOn: string;
+              };
             } | null;
           }>;
         };
@@ -144,15 +183,37 @@ export interface GitHubData {
     };
   };
   issues: Array<{
+    id: string;
     title: string;
     state: string;
+    status: string;
+    number: number;
+    url: string;
     created_at: string;
     closed_at: string | null;
-    status?: string;
+    labels: Array<{
+      name: string;
+      color: string;
+    }>;
+    assignees: Array<{
+      login: string;
+      avatarUrl: string;
+    }>;
+    milestone?: {
+      title: string;
+      dueOn: string;
+    };
   }>;
-  statusGroups?: {
+  statusGroups: {
     todo: number;
     inProgress: number;
     done: number;
+  };
+  metrics: {
+    totalIssues: number;
+    openIssues: number;
+    recentActivity: number;
+    avgTimeToClose: number;
+    contributorCount: number;
   };
 } 
