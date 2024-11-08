@@ -2,7 +2,8 @@
 
 ## System Overview
 
-```mermaid 
+```mermaid
+
 graph TD
     subgraph "Data Sources"
         A[Airtable API] --> P[Data Processing]
@@ -123,6 +124,7 @@ sequenceDiagram
    - Loading states
 
 ## Tech Stack
+
 - Next.js
 - TypeScript
 - Supabase

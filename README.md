@@ -27,7 +27,7 @@ A real-time analytics dashboard for tracking developer engagement, technical pro
 - **Frontend**: Next.js 15 with App Router
 - **Language**: TypeScript
 - **Data Storage**: Supabase
-- **Data Sources**: 
+- **Data Sources**:
   - Airtable (engagement surveys)
   - GitHub API (technical metrics)
 - **State Management**: SWR

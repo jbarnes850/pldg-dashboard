@@ -1,4 +1,16 @@
-import { ProcessedData, EnhancedProcessedData, AIMetrics, AIInsights } from '@/types/dashboard';
+import { ProcessedData, EnhancedProcessedData } from '@/types/dashboard';
+
+interface AIInsights {
+  keyTrends: string[];
+  areasOfConcern: string[];
+  recommendations: string[];
+  achievements: string[];
+  metrics: {
+    engagementScore: number;
+    technicalProgress: number;
+    collaborationIndex: number;
+  };
+}
 
 export function calculateEngagementScore(data: ProcessedData): number {
   const {
