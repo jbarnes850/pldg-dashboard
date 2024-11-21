@@ -1,109 +1,81 @@
-import { useCallback, useMemo } from 'react';
-import { useAirtableData } from './airtable';
-import { useGitHubData } from './github';
-import { processData } from './data-processing';
-import React from 'react';
+import { useCallback, useState, useEffect } from 'react';
+import useSWR from 'swr';
+import { DataProcessor } from './time-series/integration';
+import { EngagementData, GitHubData } from '@/types/dashboard';
+import type { ProcessedData } from '@/types/dashboard';
 
-export function useDashboardSystem() {
-  const { 
-    data: airtableData, 
-    isLoading: isAirtableLoading,
-    isError: isAirtableError,
-    mutate: refreshAirtable,
-    timestamp: airtableTimestamp 
-  } = useAirtableData();
+export function useDashboardSystemContext() {
+  const [data, setData] = useState<ProcessedData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+  const [isFetching, setIsFetching] = useState(false);
 
-  const { 
-    data: githubData, 
-    isLoading: isGithubLoading,
-    isError: isGithubError,
-    mutate: refreshGithub,
-    timestamp: githubTimestamp 
-  } = useGitHubData();
-
-  React.useEffect(() => {
-    console.log('Data Sources State:', {
-      airtable: {
-        hasData: !!airtableData?.length,
-        recordCount: airtableData?.length,
-        isLoading: isAirtableLoading,
-        timestamp: airtableTimestamp
-      },
-      github: {
-        hasData: !!githubData,
-        statusGroups: githubData?.statusGroups,
-        isLoading: isGithubLoading,
-        timestamp: githubTimestamp
+  const { data: airtableData, isLoading: isAirtableLoading } = useSWR<EngagementData[]>(
+    '/api/airtable',
+    async () => {
+      const response = await fetch('/api/airtable');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    });
-  }, [airtableData, githubData, isAirtableLoading, isGithubLoading, airtableTimestamp, githubTimestamp]);
-
-  const processedData = useMemo(() => {
-    console.log('Processing State:', {
-      airtable: {
-        hasData: !!airtableData?.length,
-        recordCount: airtableData?.length,
-        sampleRecord: airtableData?.[0],
-        isLoading: isAirtableLoading
-      },
-      github: {
-        hasData: !!githubData,
-        statusGroups: githubData?.statusGroups,
-        isLoading: isGithubLoading
-      },
-      timestamp: new Date().toISOString()
-    });
-
-    if (isAirtableLoading || isGithubLoading) {
-      console.log('Still loading data...');
-      return null;
+      const data = await response.json();
+      return data.records || [];
     }
+  );
 
-    if (!airtableData?.length || !githubData?.statusGroups) {
-      console.log('Missing required data:', {
-        hasAirtable: !!airtableData?.length,
-        airtableCount: airtableData?.length,
-        hasGithub: !!githubData?.statusGroups,
-        timestamp: new Date().toISOString()
-      });
+  const { data: githubData, isLoading: isGithubLoading } = useSWR<GitHubData>(
+    '/api/github',
+    async () => {
+      const response = await fetch('/api/github');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    }
+  );
+
+  const processData = useCallback(async (): Promise<ProcessedData | null> => {
+    if (!airtableData || !githubData || isAirtableLoading || isGithubLoading) {
       return null;
     }
 
     try {
-      const result = processData(airtableData, githubData);
-      console.log('Data Processing Complete:', {
-        hasResult: !!result,
-        metrics: {
-          contributors: result?.activeContributors,
-          techPartners: result?.programHealth.activeTechPartners,
-          engagementTrends: result?.engagementTrends.length,
-          technicalProgress: result?.technicalProgress.length
-        },
-        timestamp: new Date().toISOString()
-      });
-      return result;
-    } catch (error) {
-      console.error('Processing Error:', error);
+      const processor = DataProcessor.getInstance();
+      const data = await processor.processData(airtableData, githubData);
+      setData(data);
+      setLastUpdated(new Date().toISOString());
+      return data;
+    } catch (error: unknown) {
+      console.error('Error processing dashboard data:', error);
+      setError(error instanceof Error ? error.message : 'An unknown error occurred');
       return null;
     }
   }, [airtableData, githubData, isAirtableLoading, isGithubLoading]);
 
+  const refresh = useCallback(async () => {
+    console.log('Starting Refresh');
+    setIsFetching(true);
+    try {
+      await processData();
+      console.log('Refresh Complete');
+    } catch (error: unknown) {
+      console.error('Error refreshing data:', error);
+      setError(error instanceof Error ? error.message : 'An unknown error occurred');
+    } finally {
+      setIsFetching(false);
+    }
+  }, [processData]);
+
+  useEffect(() => {
+    processData();
+  }, [processData]);
+
   return {
-    data: processedData,
+    data,
     isLoading: isAirtableLoading || isGithubLoading,
-    isError: isAirtableError || isGithubError,
-    isStale: false,
-    lastUpdated: Math.max(airtableTimestamp || 0, githubTimestamp || 0),
-    isFetching: isAirtableLoading || isGithubLoading,
-    refresh: useCallback(async () => {
-      console.log('Starting Refresh');
-      try {
-        await Promise.all([refreshAirtable(), refreshGithub()]);
-        console.log('Refresh Complete');
-      } catch (error) {
-        console.error('Refresh Failed:', error);
-        throw error;
-      }
-    }, [refreshAirtable, refreshGithub])
+    isError: !!error,
+    error,
+    refresh,
+    lastUpdated,
+    isFetching
   };
 }
