@@ -4,17 +4,28 @@ import * as React from 'react';
 import { useDashboardSystemContext } from '@/context/DashboardSystemContext';
 import ExecutiveSummary from './ExecutiveSummary';
 import { ActionableInsights } from './ActionableInsights';
-import EngagementChart from './EngagementChart';
-import TechnicalProgressChart from './TechnicalProgressChart';
 import TechPartnerChart from './TechPartnerChart';
 import TopPerformersTable from './TopPerformersTable';
 import { LoadingSpinner } from '../ui/loading';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { RefreshCw } from 'lucide-react';
+import { TimeSeriesSection } from './time-series/TimeSeriesSection';
+import { TechPartnerTrends } from './time-series/TechPartnerTrends';
+import { EngagementTrends } from './time-series/EngagementTrends';
+import { ContributionGrowth } from './time-series/ContributionGrowth';
+import { useMemo } from 'react';
 
 export default function DeveloperEngagementDashboard() {
   const { data, isLoading, isError, refresh, lastUpdated, isFetching } = useDashboardSystemContext();
+
+  const techPartnerData = useMemo(() => {
+    if (!data) return [];
+    return data.techPartnerPerformance.map(partner => ({
+      ...partner,
+      completionRate: Math.round(partner.completionRate * 100)
+    }));
+  }, [data]);
 
   React.useEffect(() => {
     console.log('Dashboard State:', {
@@ -97,23 +108,32 @@ export default function DeveloperEngagementDashboard() {
         <ActionableInsights data={data} />
       </div>
 
-      {/* Charts Section - Side by Side */}
+      {/* Time Series Analytics */}
+      <div className="mb-8">
+        <div className="grid gap-4 md:grid-cols-2">
+          <TechPartnerTrends 
+            data={data.techPartnerActivity || []} 
+            className="col-span-1"
+          />
+          <EngagementTrends 
+            data={data.engagementTrends || []} 
+            className="col-span-1"
+          />
+          <ContributionGrowth 
+            data={data.contributorGrowth || []} 
+            className="col-span-1"
+          />
+        </div>
+      </div>
+
+      {/* Additional Insights */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <EngagementChart data={data.engagementTrends} />
-        <TechnicalProgressChart 
-          data={data.technicalProgress} 
-          githubData={{
-            inProgress: data.issueMetrics[0]?.open || 0,
-            done: data.issueMetrics[0]?.closed || 0
-          }}
-        />
+        <TechPartnerChart data={techPartnerData} />
+        <TopPerformersTable data={data.topPerformers} />
       </div>
 
       {/* Full Width Sections */}
       <div className="space-y-8">
-        {/* Tech Partner Overview */}
-        <TechPartnerChart data={data.techPartnerPerformance} />
-
         {/* Top Contributors */}
         <Card>
           <CardHeader>

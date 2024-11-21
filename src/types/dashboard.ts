@@ -14,18 +14,13 @@ export interface EngagementData {
   'Program Week': string;
   'Engagement Participation ': string;
   'Tech Partner Collaboration?': string;
-  'Which Tech Partner': string | string[];
-  'How many issues, PRs, or projects this week?': string;
+  'Which Tech Partner': string;
   'How likely are you to recommend the PLDG to others?': string;
-  'PLDG Feedback'?: string;
+  'How many issues, PRs, or projects this week?': string;
   'Issue Title 1'?: string;
   'Issue Link 1'?: string;
-  'Which session(s) did you find most informative or impactful, and why?'?: string;
-  'Github Username'?: string;
-  'Email Address'?: string;
-  'Engagement Tracking'?: string;
-  'Describe your work with the tech partner'?: string;
-  'Did you work on an issue, PR, or project this week?'?: string;
+  'Issue Description 1'?: string;
+  [key: string]: string | undefined;
 }
 
 export interface IssueMetrics {
@@ -61,9 +56,19 @@ export interface TechPartnerMetrics {
   collaborationScore: number;
 }
 
+export interface TechPartnerActivity {
+  week: string;
+  partner: string;
+  issues: number;
+  contributions: number;
+  collaborations: number;
+}
+
 export interface TechPartnerPerformance {
   partner: string;
   issues: number;
+  activeContributors: number;
+  completionRate: number;
 }
 
 export interface EngagementTrend {
@@ -81,35 +86,57 @@ export interface TechnicalProgress {
 
 export interface ContributorGrowth {
   week: string;
-  newContributors: number;
-  returningContributors: number;
-  totalActive: number;
+  totalContributions: number;
+  activeContributors: number;
+  contributionsPerDev: number;
+  newContributors?: number;
+}
+
+export interface WeeklyMetrics {
+  sessionAttendance: { [key: string]: number };
+  participationLevels: {
+    high: number;
+    medium: number;
+    low: number;
+  };
+  issues: {
+    total: number;
+    details: Array<{
+      title: string;
+      link: string;
+      description: string;
+    }>;
+  };
+  cumulative: {
+    totalContributions: number;
+    byTechPartner: { [key: string]: number };
+  };
 }
 
 export interface ProcessedData {
   weeklyChange: number;
+  participationRate: number;
   activeContributors: number;
   totalContributions: number;
   programHealth: {
     npsScore: number;
     engagementRate: number;
+    satisfactionScore: number;
     activeTechPartners: number;
   };
-  keyHighlights: {
-    activeContributorsAcrossTechPartners: string;
-    totalContributions: string;
-    positiveFeedback: string;
-    weeklyContributions: string;
-  };
-  topPerformers: TopPerformer[];
-  actionItems: ActionItem[];
+  npsScore: number;
+  engagementRate: number;
+  satisfactionScore: number;
+  activeTechPartners: number;
   engagementTrends: EngagementTrend[];
   technicalProgress: TechnicalProgress[];
-  issueMetrics: IssueMetrics[];
-  feedbackSentiment: FeedbackSentiment;
   techPartnerMetrics: TechPartnerMetrics[];
+  techPartnerActivity: TechPartnerActivity[];
   techPartnerPerformance: TechPartnerPerformance[];
   contributorGrowth: ContributorGrowth[];
+  feedbackSentiment: FeedbackSentiment;
+  actionItems: ActionItem[];
+  topPerformers: TopPerformer[];
 }
 
 export interface AIMetrics {
@@ -135,7 +162,7 @@ export interface GitHubData {
     user: {
       projectV2: {
         items: {
-          nodes: Array<any>;
+          nodes: any[];
         };
       };
     };
@@ -147,24 +174,16 @@ export interface GitHubData {
     created_at: string;
     closed_at: string | null;
     status: string;
-    assignee?: { login: string };
+    assignee?: {
+      login: string;
+    };
   }>;
+  timestamp: number;
   statusGroups: {
     todo: number;
     inProgress: number;
     done: number;
   };
-  timestamp: number;
-  projectBoard?: {
-    issues: any[];
-    project: Record<string, any>;
-    statusGroups: {
-      todo: number;
-      inProgress: number;
-      done: number;
-    };
-  };
-  userContributions?: Record<string, GitHubUserContribution>;
 }
 
 export interface GitHubUserContribution {
@@ -257,4 +276,4 @@ export interface GitHubIssue {
     merged_at: string | null;
   };
   requested_reviewers?: Array<{ login: string }>;
-} 
+}

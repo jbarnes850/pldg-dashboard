@@ -1,9 +1,12 @@
 "use client";
 
 import React from 'react';
+import { Button } from './ui/button';
+import { AlertCircle } from 'lucide-react';
 
 interface Props {
   children: React.ReactNode;
+  fallback?: React.ReactNode;
 }
 
 interface State {
@@ -22,29 +25,30 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error('Dashboard error:', error, errorInfo);
+    console.error('Error caught by boundary:', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-            <p className="text-sm text-muted-foreground mb-4">
-              {this.state.error?.message}
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="text-primary hover:underline"
-            >
-              Refresh Page
-            </button>
+      return this.props.fallback || (
+        <div className="p-4 rounded-lg bg-red-50 border border-red-200">
+          <div className="flex items-center gap-2 text-red-600 mb-2">
+            <AlertCircle className="w-5 h-5" />
+            <h3 className="font-medium">Something went wrong</h3>
           </div>
+          <p className="text-sm text-red-600 mb-3">
+            {this.state.error?.message || 'An unexpected error occurred'}
+          </p>
+          <Button
+            variant="outline"
+            onClick={() => this.setState({ hasError: false })}
+          >
+            Try again
+          </Button>
         </div>
       );
     }
 
     return this.props.children;
   }
-} 
+}
