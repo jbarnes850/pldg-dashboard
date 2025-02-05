@@ -13,6 +13,21 @@ A real-time analytics dashboard for tracking developer engagement, technical pro
 - 🤖 AI-powered insights generation
 - 📑 Executive summary reporting
 - 🔄 GitHub integration for issue tracking
+- 👥 Multi-cohort support with data segmentation
+
+## Cohort Data Structure
+
+The dashboard now supports multiple cohorts with data segmentation:
+
+### Cohort 1 (Fall 2024)
+- Initial PLDG cohort
+- Data located in `/public/data/cohort-1/`
+- Historical baseline for program metrics
+
+### Cohort 2 (Spring 2025)
+- Current active cohort
+- Data located in `/public/data/cohort-2/`
+- Real-time engagement tracking
 
 ## Tech Stack
 
@@ -71,17 +86,19 @@ src/
 1. **Data Sources**:
    - Airtable: Weekly engagement surveys
    - GitHub: Issue tracking and project data
+   - Cohort-specific CSV data files
 
 2. **Processing Pipeline**:
-   - Raw data fetching
+   - Raw data fetching with cohort segmentation
    - Data validation (Zod schemas)
-   - Metric calculations
-   - Insight generation
+   - Cohort-specific metric calculations
+   - Insight generation per cohort
 
 3. **Real-time Updates**:
    - Automatic refresh intervals
    - On-demand data updates
    - Error handling and retry logic
+   - Cohort-specific caching
 
 ## Contributing
 
@@ -105,6 +122,11 @@ MIT License
    - Data freshness limited by API rate limits
    - Snapshot-based metrics without historical context
    - Limited ability to track long-term patterns
+
+3. **Cohort-Specific Limitations**:
+   - Limited historical data for trend analysis between cohorts
+   - Manual data import required for new cohorts
+   - No automated cohort transition handling
 
 ## Roadmap
 
@@ -149,3 +171,17 @@ MIT License
    - Role-based access control
    - Mobile optimization
    - Real-time notifications
+
+### Phase 4 (Cohort Enhancement)
+
+1. **Automated Cohort Management**
+   - Automated data import for new cohorts
+   - Cohort transition automation
+   - Cross-cohort analytics
+   - Cohort comparison tools
+
+2. **Enhanced Cohort Features**
+   - Cohort-specific dashboards
+   - Customizable metrics per cohort
+   - Cohort performance benchmarking
+   - Automated cohort reports

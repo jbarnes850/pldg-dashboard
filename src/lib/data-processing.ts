@@ -3,9 +3,11 @@ import {
   EngagementData, ProcessedData, TechPartnerMetrics,
   TechPartnerPerformance, ContributorDetails, IssueResult,
   IssueHighlight, EnhancedTechPartnerData, ActionItem,
-  GitHubData, IssueMetrics, EngagementTrend
+  GitHubData, IssueMetrics, EngagementTrend, CohortId
 } from '@/types/dashboard';
 import * as utils from './utils';
+import Papa from 'papaparse';
+import { getCohortDataPath, COHORT_DATA } from "@/types/cohort";
 
 // Types for CSV data structure
 interface WeeklyEngagementEntry {
@@ -629,7 +631,8 @@ function calculateTotalContributions(csvData: any[]): number {
 // Update the processData function to return all required ProcessedData fields
 export function processData(
   csvData: any[],
-  githubData?: GitHubData | null
+  githubData?: GitHubData | null,
+  cohortId?: CohortId
 ): ProcessedData {
   console.log('Processing data:', {
     recordCount: csvData.length,
@@ -653,30 +656,43 @@ export function processData(
     )
   );
 
+  // Filter data by cohort if specified
+  const cohortData = cohortId ? csvData.filter(row => row.cohortId === cohortId) : csvData;
+
+  // Add cohort metadata to processed data
+  const cohortInfo = cohortId ? COHORT_DATA[cohortId] : null;
+  
+  // Filter data by date range if cohort is specified
+  const cohortDataFiltered = cohortId ? csvData.filter(row => {
+    const weekDate = new Date(row['Program Week'].match(/\((.*?)\)/)?.[1] || '');
+    return weekDate >= new Date(cohortInfo!.startDate) && 
+           weekDate <= new Date(cohortInfo!.endDate);
+  }) : csvData;
+
   return {
-    weeklyChange: calculateWeeklyChange(csvData),
+    weeklyChange: calculateWeeklyChange(cohortDataFiltered),
     activeContributors,
     totalContributions,
     programHealth: {
-      npsScore: calculateNPSScore(csvData),
-      engagementRate: calculateEngagementRate(csvData),
+      npsScore: calculateNPSScore(cohortDataFiltered),
+      engagementRate: calculateEngagementRate(cohortDataFiltered),
       activeTechPartners: techPartners.size
     },
     keyHighlights: {
       activeContributorsAcrossTechPartners: `${activeContributors} across ${techPartners.size}`,
       totalContributions: `${totalContributions} total`,
-      positiveFeedback: `${calculatePositiveFeedback(csvData)} positive`,
-      weeklyContributions: `${calculateWeeklyChange(csvData)}% change`
+      positiveFeedback: `${calculatePositiveFeedback(cohortDataFiltered)} positive`,
+      weeklyContributions: `${calculateWeeklyChange(cohortDataFiltered)}% change`
     },
-    topPerformers: calculateTopPerformers(csvData),
-    techPartnerMetrics: calculateTechPartnerMetrics(csvData),
+    topPerformers: calculateTopPerformers(cohortDataFiltered),
+    techPartnerMetrics: calculateTechPartnerMetrics(cohortDataFiltered),
     techPartnerPerformance,
-    engagementTrends: calculateEngagementTrends(csvData),
-    technicalProgress: calculateTechnicalProgress(csvData, githubData),
-    issueMetrics: processRawIssueMetrics(csvData),
-    actionItems: calculateActionItems(csvData),
+    engagementTrends: calculateEngagementTrends(cohortDataFiltered),
+    technicalProgress: calculateTechnicalProgress(cohortDataFiltered, githubData),
+    issueMetrics: processRawIssueMetrics(cohortDataFiltered),
+    actionItems: calculateActionItems(cohortDataFiltered),
     feedbackSentiment: {
-      positive: calculatePositiveFeedback(csvData),
+      positive: calculatePositiveFeedback(cohortDataFiltered),
       neutral: 0,
       negative: 0
     },
@@ -686,7 +702,15 @@ export function processData(
       returningContributors: 0,
       totalActive: activeContributors
     }],
-    rawEngagementData: csvData
+    rawEngagementData: cohortDataFiltered,
+    cohortId,
+    cohortInfo: cohortInfo ? {
+      id: cohortInfo.id,
+      name: cohortInfo.name,
+      startDate: cohortInfo.startDate,
+      endDate: cohortInfo.endDate,
+      description: cohortInfo.description
+    } : null,
   };
 }
 
@@ -850,4 +874,23 @@ function processContributorData(csvData: Array<{
   });
 
   return Array.from(contributorMap.values());
+}
+
+export async function loadCohortData(cohortId: CohortId) {
+  try {
+    const path = getCohortDataPath(cohortId);
+    console.log(`Loading cohort data from: ${path}`);
+    
+    const response = await fetch(path);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch CSV for cohort ${cohortId}: ${response.statusText}`);
+    }
+    
+    const data = await response.text();
+    console.log(`Successfully loaded cohort ${cohortId} data: ${data.length} bytes`);
+    return data;
+  } catch (error) {
+    console.error(`Error loading cohort ${cohortId} data:`, error);
+    throw error;
+  }
 }

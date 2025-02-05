@@ -1,11 +1,15 @@
 import { enhanceTechPartnerData } from '../utils';
 import { TechPartnerPerformance, EngagementData } from '../../types/dashboard';
+import '@testing-library/jest-dom';
+import { describe, it, expect } from '@jest/globals';
 
 describe('enhanceTechPartnerData', () => {
   const mockBaseData: TechPartnerPerformance[] = [
     {
       partner: 'Partner A',
-      issues: 10
+      issues: 10,
+      timeSeriesData: [],
+      contributorDetails: []
     }
   ];
 
@@ -13,6 +17,7 @@ describe('enhanceTechPartnerData', () => {
     {
       Name: 'John Doe',
       'Github Username': 'johndoe',
+      'Email Address': 'john@example.com',
       'Program Week': 'Week 1',
       'Which Tech Partner': 'Partner A',
       'How many issues, PRs, or projects this week?': '2',
@@ -52,21 +57,21 @@ describe('enhanceTechPartnerData', () => {
       expect(contributorDetails).toEqual({
         name: 'John Doe',
         githubUsername: 'johndoe',
+        email: 'john@example.com',
         issuesCompleted: 2,
         engagementScore: 3,
-        email: undefined,
         recentIssues: []
       });
     });
 
-    it('should filter out contributors without GitHub usernames', () => {
+    it('should handle missing GitHub usernames', () => {
       const dataWithoutGithub = [{
         ...mockEngagementData[0],
         'Github Username': ''
       }];
       const result = enhanceTechPartnerData(mockBaseData, dataWithoutGithub);
       const contributor = result[0].contributorDetails[0];
-      expect(contributor.githubUsername).toBe('john-doe'); // Default to name-based username
+      expect(contributor.githubUsername).toBe('john-doe');
       expect(contributor.name).toBe('John Doe');
     });
   });

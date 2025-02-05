@@ -1,0 +1,398 @@
+﻿Name,Github Username,Email Address,Program Week,Engagement Tracking,Engagement Participation ,"Which session(s) did you find most informative or impactful, and why?",Tech Partner Collaboration?,Which Tech Partner,Describe your work with the tech partner,"Did you work on an issue, PR, or project this week?","How many issues, PRs, or projects this week?",Issue Title 1,Issue Link 1,Issue Description 1,Issue Title 2,Issue Link 2,Issue Description 2,Issue Title 3,Issue Link 3,Issue Description 3,Issue 4+,How likely are you to recommend the PLDG to others?,PLDG Feedback,Select any additional calls that you attended this week.
+Meet Jain,Meetjain1,meetofficialhere@gmail.com,,Weekly Standup,3 - Highly engaged,Recently conducted Onboarding call was nice as it addresses all of my queries as a newbie in this program.,No,,,No,,,,,,,,,,,,10,"Nothing as of now, going great",
+,subhajit11010,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,5,,
+,Prajjawalk,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,1 - Passively listened but did not contribute ,Onboarding session was informative as we got to know more about cohort and tech partners.,No,,,No,,,,,,,,,,,,9,No feedback as of now.,
+,shobit000,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,3 - Highly engaged,"i like the filecoin team most , i think i will contribute there most",No,,,No,,,,,,,,,,,,10,it is a great experience,
+,PsychoPunkSage,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,2 - Actively listened with minimal contributions,"Focused on learning PLDG structure, teams, best practices, and contribution methods as a new contributor. Found it very informative!",No,,,No,,,,,,,,,,,,9,No as of now,
+,https://github.com/misskiran,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,1 - Passively listened but did not contribute ,"Yes , it was fruitful to know about the tech partner and walk through their open source repos.",No,,,No,,,,,,,,,,,,8,I have interacted with some mentors and they are really helpful.,
+,adielliot37,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,2 - Actively listened with minimal contributions,,Yes,Storacha,working in my continued issue from cohort-1 tg miniapp,Yes,1,backend-api,,"working in my local repo for the backend APIs for miniapp
+Though this week i was busy with some my family stuff still I managed to contribute ",,,,,,,,10,,
+,gitsrc,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,Yes,IPFS,"Learned about IPFS boxo #679 in Cohort 2 Kickoff, submitted code via PR. Awaiting approval. ",Yes,1,feat(gateway): add configurable response write timeout,https://github.com/ipfs/boxo/pull/812,"Adds 30s timeout to IPFS gateway for slow clients. Includes middleware, tests. Fixes #679. Improves reliability.",,,,,,,,8,,
+,shanni,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"I pinged Anubha mulitple times through the week, but still don't have the google calendar. 
+The kick off session is helpful",No,,,No,,,,,,,,,,,,8,"I hope there's more clear instruction - I reached multiple channels (telegram, discord, slack, email) but I'm still added to the discord cohort2 channel.. didn't receive the google calendar",
+,HarshS1611,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"I found the kickoff call quite exciting where I learned about the overview of the cohort, expectations,and the opportunities to work on great projects",Yes,"Libp2p,Fil-B",I attended libp2p community call and js-libp2p maintainer's call on 14th Jan. I also reached out to Sarah from fil-b regarding an open issue.,No,,,,,,,,,,,,10,"Please increase the limit for the above textarea input its showing the limit of only 150 characters. Also, please conduct some ama and workshops of tech partners.",
+,metalboyrick,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,2 - Actively listened with minimal contributions,"The Cohort Kickoff 2 was insightful, with a clear intro to the program, partners, and great success stories.",No,,,No,,,,,,,,,,,,7,"Yes, I think the calendar should have been shared much early on.
+
+Also a suggestion in relation to the standups is that we can have an async way to conduct this or maybe have another session if possible that would be on a optimum time from people from other regions. I feel it's not very productive for people who have to stay up at 11 PM, 12 AM to conduct any standups, as they would be very sleepy despite being night owls.",
+,Meetjain1,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"As of Now kickoff session was just amazing, got all the information on how to start and loved to meet many new connections there.",No,,,No,,,,,,,,,,,,10,Nothing as of now its going great !,
+,Nkovaturient ,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Cohort[2] kickoff was engaging, informative & worthwhile; clearing few doubts on which projects to work on with my aligned or upskilling tech stacks.",Yes,"Libp2p,IPFS","Libp2p—Open Maintainer's Call (21 Jan) guided by Manusheel Gupta where he highlighted their current requirements, feature enhancement in libp2p—py&go ",No,,,,,,,,,,,,10,,
+,hthomp15,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,It was nice meeting the teams we can work with. I also found interest in a project I previously thought wasn't appealing.,No,,,No,,,,,,,,,,,,6,"There was a lot of uncertainty, so it was hard to just jump in and work on things. It would be nice to have more direction, but I understand things are still working themselves out.  ",
+,Dhruv-Varshney-developer,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"
+Both helpful:
+
+1. Cohort 2 kickoff: Very useful, provided program clarity.
+2. How to pick up issue for the program was clarified.",No,,,No,,,,,,,,,,,,10,,
+,0-th,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,The Cohort2 Kickoff was informative for me because of the brief introduction by the different tech partners,Yes,Libp2p,"- I spoke with Manu concerning a PR I had made to the py-libp2p repo
+- He pointed me to a WIP PR to review and appropriate resources to understand PR",Yes,1,I fixed a broken link in the py-libp2p README,https://github.com/libp2p/py-libp2p/pull/495,- There was a link to a file in the libp2p/libp2p repo that showed the standard modules in libp2p but that file had gotten deleted a while ago. I replaced the link with a correct link to the implementations page on the libp2p documentation website,,,,,,,,10,Everything looks good so far. I can see everyone's trying their best to enable us make meaningful contributions 🚀🚀🚀,
+,shiyasmohd,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"Weekly standup and Kick off call, both were informative. Looking forward to contribute to rust-libp2p. Went through the docs & videos this week.",No,,,No,,,,,,,,,,,,9,Resources could be shared in advance,
+,paschal533,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,Yes,"Coordination Network,Drand,Fil-B,IPFS,Akave",I spoke with Max at Coordination Network about the issue I was having setting up Coordnet repo on Docker. He helped me troubleshoot & resolve them.,Yes,4+,Fix/mobile layout scrolling and modals,https://github.com/coordnet/coordnet/pull/407,"I optimized mobile interface by implementing full-screen node pages for readability, eliminating horizontal scroll through element sizing adjustments, and Enlarge Message AI modal while preserving node selection.",feat: Added support for iOS home screen icons,https://github.com/coordnet/coordnet/pull/342,"I added Apple-touch-icons and updated meta tags for improved iOS home screen integration, ensuring proper display and web app capabilities when saved.",Update GitHub Actions to use Node.js 22.x,https://github.com/drand/drand-client/pull/89,This PR updates the GitHub Actions workflow to use Node.js version 22.x for running tests.,"4. Name: feat: add Helia Angular example
+4. Link: https://github.com/ipfs-examples/helia-examples/pull/309
+4. Description: I added more test to the Helia Angular example
+
+5. Name: Mobile Searchbar Causes Unresponsive View
+5. Link: https://github.com/coordnet/coordnet/issues/408
+5. Decription: When opening the searchbar on mobile devices, the mobile view becomes unresponsive. I'm currently fixing this issue.
+
+6.Name: Tests for DealClient.sol and DealInfo.sol Contracts?
+6. Link: https://github.com/FIL-Builders/fil-frame/issues/82
+6. Description: I've noticed the repository contains two Hardhat contracts, DealClient.sol and DealInfo.sol, but it seems there are no corresponding test cases for them.
+
+Here are some PRs I worked on during the Holiday:
+
+7. Name: Add Ethereum address validation with enhanced UI and error messaging
+7. Link: https://github.com/akave-ai/akave-testnet-faucet/pull/5
+7. Description: This PR introduces validation for Ethereum addresses with enhanced UI feedback
+
+8. Name: Add email validation feature
+8. Link: https://github.com/akave-ai/akave-testnet-faucet/pull/6
+8. Description: Added validation logic for email addresses
+
+9. Name: Add MetaMask detection, dynamic button behavior, Prettier scripts for formatting and format checking.
+9. Link: https://github.com/akave-ai/akave-testnet-faucet/pull/7
+9. Description: Implemented MetaMask detection with dynamic button behavior and download fallback, enabled Akave token wallet integration, and standardized code formatting via Prettier + npm scripts.
+
+10. Name: Add README documentation for AKAVE Testnet Faucet
+10. Link: https://github.com/akave-ai/akave-testnet-faucet/pull/8
+10. Description: Added a comprehensive README.md for AKAVE Testnet Faucet with project overview, installation steps, usage guidelines, and contribution docs to streamline onboarding and centralize project knowledge.",10,Not really.,
+,https://github.com/PraneetMokkapati,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,Cohort 2 Kickoff - for all the introductions and good places to start exploring the projects.,No,,,No,,,,,,,,,,,,10,Great Job in trying to bring everyone onto a common platform. I'm enjoying the vibe in the discord and trying to find my feet within the community. Keep up the good work.,
+,https://github.com/kaf-lamed-beyt,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,2 - Actively listened with minimal contributions,,No,,,No,,,,,,,,,,,,10,,
+,acul71,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Kickoff for knowing Tech Partners, Weekly Standup for knowing some of the partecipants",Yes,Libp2p,"Dave, Alex, Manu  talked about py-lib2p2 architecture, and Quick protocol, etc. They help to understand insights to be able to work on issues",Yes,3,Enhancement: Improve GIL in ping.py Example #492,https://github.com/libp2p/py-libp2p/issues/492,"High CPU usage for ping example, fixed and closed!",MAX_DATA_LENGTH Not Enforced on 'encode' #135,https://github.com/alanshaw/it-length-prefixed/issues/135,"Fixed an issue about MAX_DATA_LENGTH , and allow for custom maxDataLength
+Waiting for review",Allow Configuration of it-length-prefixed MAX_DATA_LENGTH via PeerStreams Options #2880,https://github.com/libp2p/js-libp2p/issues/2880,Will work on this when alanshaw/it-length-prefixed#136 https://github.com/alanshaw/it-length-prefixed/pull/136  will be merged,,9,"Prepare a list of resources for how to
+1) Engage in the community (Slack, Discord, Telegram)
+2) How to work in github and git (PR desc format, who to tag, git pull , git push, git remote (origin and upstream) git stash, write a test not only the code for fixing the issue
+3) npm run build, npm run test, npm run lint (Can't count how many times I did forget about this, and saw github workflow fail)",
+,jaydippatel83,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,10,,
+,mansijoshi17,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions, In bot the call we got to know about tech partners and their goal and learned about how previous cohort participants are contributing.,No,,,No,,,,,,,,,,,,10,It would be great if you guys can curate the issues which are easy for someone who is new to open source so that they can directly start with it as you guys mentioned in stand up call. It would be great help. Thank you :),
+,kamuik16,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,Yes,Libp2p,,Yes,1,https://github.com/libp2p/rust-libp2p/issues/4449,https://github.com/libp2p/rust-libp2p/pull/5828,Use tokio runtime over async-std in rust-libp2p.,,,,,,,,10,,
+,debuggingfuture,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",None of the above,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,8,,
+,Chaitu-Tatipamula,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,"Kickoff call did provided a lot of information, i got to know how to contribute effectively and gain insights from mentors.",No,,,No,,,,,,,,,,,,8,"Facing some difficulty on where to start, so would be great if they share some roadmap kind of thing with a detailed material that i can use for my contribution journey.",
+,vivekpal1,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,10,,
+,https://github.com/MOHANKUMAR-IT,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,7,,
+,https://github.com/07Vaishnavi-Singh,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,I found the Cohort 2 kickoff interesting as I got a lot of information about the cohort and whom to reach out to for which tech partners and repos.,Yes,,I interacted with Jarrod Barnes for a fix in the PLDG website more details in the below question.,Yes,1,PLDG Website,https://github.com/jbarnes850/pldg-dashboard/issues/9,"There was a fix in the PLDG website in the Fil-B button that was not directed to the Fil-B repo rather it was showing a 404. I setup the website repo locally and found nothing was wrong with the link rather the data(URL of the repo to be directed to) is fetched by an airtable table. We do this by using an Airtable API key. 
+The issue lies in the URL that was being used earlier to call the getter function on this API integration is now upgraded and uses a new URL because of which I needed to change it. I needed some date format of the Airtable table because it is private and talked to Jarrod regarding the same in issue - https://github.com/jbarnes850/pldg-dashboard/issues/9.
+
+Planning to finish it by the end of this weekend.
+Thanks! 
+",,,,,,,,10,,
+,panditdhamdhere,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,I found weekly standup impactful so far because I got info about other collaborators and there you can ask questions.,Yes,Storacha,,Yes,4+,Storacha Network,https://github.com/storacha/docs/pull/28,updated docs with typo at the Go Client page.,Filecoin docs,https://github.com/filecoin-project/filecoin-docs/pull/2352,updated FAQ docs with typo.,Filecoin docs,https://github.com/filecoin-project/filecoin-docs/pull/2353,Filecoin docs,"https://github.com/filecoin-project/filecoin-docs/pull/2354
+
+https://github.com/filecoin-project/filecoin-docs/pull/2354
+
+These and changes still open with 1 PR approved ",9,,
+,Shradhesh71,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"During the Cohort 2 Kickoff, I found the session on effective communication particularly informative, offering practical tips.",No,,,No,,,,,,,,,,,,10,,
+,Goddhi,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,Cohort 2 kickoff,No,,,No,,,,,,,,,,,,10,no,
+,d4v1d03,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"I learned a lot about the cohort during the weekly standup, especially regarding how to get started with libp2p and other projects.",No,,,No,,,,,,,,,,,,10,"Not really as of now, hope to give some good suggestions as the cohort progresses.",
+,kenyiu,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,3 - Highly engaged,"Introduction to the tech partners, which let me have an overview on what the partners are expecting and how we can involve.",No,,,No,,,,,,,,,,,,8,,
+,wtfsayo,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,10,,
+,MattWong-ca,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",None of the above,,,No,,,Yes,1,Pyth Integration for FIL-Frame,https://github.com/FIL-Builders/fil-frame/pull/79,Reviewed the features that Nick added to the Pyth integration. This week was a bit busy with school starting back up.,,,,,,,,9,,
+,Hany-Almnaem,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"Most Informative: Kickoff session 
+Most Impactful: AMA with Juan Benet on open-source contributions and impactful projects.",No,,,No,,,,,,,,,,,,10,"I would love to learn more about the Tech Partners and their projects, and it would be helpful if direct communication channels with partners were provided tailored to each project. For newcomers, some areas of the process can be a little confusing, so more onboarding materials or structured introductions might help ease this transition.",
+,lordshashank,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Cohort kickoff helped me know about various protocols like spark , etc with whom I can work with.",Yes,Fil-Oz,Talked to zen and worked on integrating signature verifiication with actor for fil deal wrapper.,Yes,1,Signature Authentication Refactor,https://github.com/Eastore-project/fil-deal-wrapper/pull/1,Worked on refactoring fil deal wrapper to integrate actor signature verification.,,,,,,,,10,,
+,akaladarshi,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Cohort 2 kickoff, more people joined and as I am working with tech partner this time, I was able to get more details regarding issues and docs.",Yes,Libp2p,I discussed with manusheel about the priorities in libp2p for this cohort and started looking into the docs that were shared.,Yes,1,Refactor stream::Shared to use internal mutability ,"Issue: https://github.com/libp2p/rust-yamux/issues/170, PR: https://github.com/libp2p/rust-yamux/pull/197","This PR was about moving mutablity of stream::Shared inside the Shared struct itself, so we don't have to put locks explicitly.
+and Shared can handle that part internally. Main challenge here was that I just started with Rust programming language which made it little bit more challenging",,,,,,,,9,,
+,GAVINESHWAR,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,1 - Passively listened but did not contribute ,"Introduction to the program, brief explanation of the projects involved in the program by the mentors of the projects.",No,,,No,,,,,,,,,,,,9,"I am new to the program, I was familiar with open source contributions, but the projects were quite different to me so, I need beginner guidance to the program. ",
+,tesol2y090,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,Weekly standup because i meeting a lot of energetics people.,No,,,No,,,,,,,,,,,,9,,
+,https://github.com/leny62/,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,2 - Actively listened with minimal contributions,"So far, I have joined the kick off and check in calls.
+I have admired the kick off call as the team explain in-depth about the program and partners.",No,,,No,,,,,,,,,,,,10,N/A,
+,sumanjeet0012,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"The Cohort 2 kickoff session was highly informative, introducing the internship's purpose, core PLDG maintainers, and details on community calls.",Yes,"Libp2p,Coordination Network","I asked about Web3 learning, roles, and community calls. Jarrod, Anubha, and Manusheel guided me with resources, clarifications, and schedules.",No,,,,,,,,,,,,10,"1. I suggest creating separate Discord servers for major core projects. This will help participants ask questions specific to each project more easily. 
+2. It’s difficult to describe all interactions in 150 characters under 'Describe your work or interactions with the Tech Partner(s)' in the weekly survey form.",
+,aaravm,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,The cohort 2 kickoff helped me choose which partner to choose and the weekly standup helped me realize how to start,No,,,No,,,,,,,,,,,,10,Please give POC for all the different tech partners. Right now I don't know how to choose,
+,SAMAD101,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,1 - Passively listened but did not contribute ,The kickoff helped me to get to know more about the cohort and how I can make get the most out of it.,No,,,No,,,,,,,,,,,,10,I think everything seems great so far in the program.,
+,mystical-prog,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,No,,,No,,,,,,,,,,,,10,,
+,silent-cipher,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",None of the above,,,Yes,Fil-Oz,,Yes,1,PDP Explorer,https://github.com/FilOzone/pdp-explorer,"Fixed signature generation and listen for function calls. Also, implemented reorg handling.",,,,,,,,10,,
+,github.com/Crosstons,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,Cohort 2 Kickoff was insightful with great tech partner pitches. The weekly standup felt rushed with only Anubha but overall the experience was great.,Yes,"Libp2p,Storacha","libp2p: Explored docs, structure, and discussed with past contributor like Vraj Desai about how to contribute using JS/Python to libp2p.  ",No,,,,,,,,,,,,9,"Anubha, Jarrod and Corey are just amazing in their roles and doing their best.",
+,seetadev,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"The Weekly Standup was most impactful as I guided new members, shared a PR documentation template, and improved onboarding for contributions.
+",Yes,"Libp2p,Fil-Oz,Fil-B,IPFS","Collaborated with Dave, Sarah, Molly, Adin on libp2p gaining insights, feedback, and strategic direction. Details at https://shorturl.at/1vvb9 ",Yes,4+,List external ressources / tutorials on rust-libp2p ,https://github.com/libp2p/rust-libp2p/issues/5717,"This week, I continued working on enhancing the documentation for adding external resources, as discussed in the maintainers' call of rust-libp2p in second week of January. Following the recent maintainers' call, I developed and shared a documentation template designed to assist PLDG Cohort-2 members in drafting pull requests for libp2p.
+
+Key Updates:
+Template Creation: Created a pull request documentation template to improve clarity and professionalism while encouraging effective collaboration during maintainers' reviews.
+
+Sharing with the Cohort: Shared the template with Cohort-2 members to standardize PR submissions, ensuring faster and more efficient reviews.
+Documentation Link: The template can be accessed here: PR Documentation Template (please visit https://docs.google.com/document/d/13xWvDLAucFSC6DXI_2JriKmSSw9bTJGqlJjo01_Ejgg/edit?usp=sharing ) 
+
+Next Steps:
+Gather feedback on the template during upcoming maintainers’ calls.
+Encourage adoption by new contributors to streamline the PR process for libp2p issues.
+Continue refining the documentation based on feedback from cohort members and maintainers.
+This initiative aims to foster collaboration, improve PR review efficiency, and support contributors in their work with the libp2p ecosystem.
+",Adding QUIC module to py-libp2p,https://github.com/libp2p/py-libp2p/pull/488,"This week, I made progress on my pull request for Py-libp2p by addressing feedback from Paul (@pacrob). After receiving his review and guidance, I identified the need to resolve linting issues and debug test errors in tests/core/transports/test_quic.py.
+
+Action Plan and Progress:
+-Executing make lint locally to address linting errors.
+- Using pytest to debug and work through errors in the QUIC transport test file.
+- Incorporating fixes and updates to the PR based on Paul's suggestions.
+
+Next Steps:
+- Finalize updates and push the fixes to the pull request.
+- Notify Paul for a follow-up review.
+- Continue collaborating with the maintainers to ensure the PR aligns with project standards.
+
+Paul’s detailed feedback and support have been instrumental in improving the PR and aligning it with the team's expectations.
+",Clarify Supported Node.js Versions for Hardhat in Documentation,https://github.com/FIL-Builders/onramp-contracts/issues/19,"Node.js Compatibility Update: Highlighted supported Node.js versions for Hardhat. Added docs, issues, and setup guide to ease onboarding.
+","4. Project/ Issue Name: BroadCast Loops
+
+Link: https://github.com/libp2p/go-libp2p-pubsub/issues/573
+
+Describe your issue, PR or project: The pubsub.Tracer lacks a proper Close() method to handle cleanup, which can lead to resource leaks, such as dangling goroutines, when tracers are no longer needed.
+
+Context:
+Currently, there is no standard way to terminate a tracer gracefully.
+Resource management issues can arise, particularly in long-running applications or during testing.
+
+Proposed Solution:
+Add a Close() method to pubsub.Tracer to handle resource cleanup properly.
+Ensure that all running goroutines initiated by the tracer are closed upon calling this method.
+
+Please find the proposed solution shared at https://docs.google.com/document/d/1eCXgjmlisPBKaIh8SEUiw9Bj9NEaqZ3mOgFlFqZcpCU/edit?usp=sharing
+
+Impact:
+Introducing a Close() method will improve resource management, prevent memory leaks, and ensure a cleaner shutdown process for tracers in libp2p-pubsub.
+
+
+5. As a recent co-maintainer and collaborator in py-libp2p, rust-libp2p and go-libp2p modules and networking stack, I reviewed 3 PRs and shared feedback via discord and in the libp2p maintainer's call:
+
+a. https://github.com/libp2p/py-libp2p/pull/495 : This PR is authored by Collins, whom I am guiding on bootstrapping with py-libp2p projects.
+
+b. https://github.com/libp2p/go-libp2p/pull/3096 : This PR is authored by Mohan, who is collaborating with me on go-libp2p projects.
+
+c. https://github.com/libp2p/rust-yamux/pull/197 : This PR is authored by Aryan, who also added me as a collaborator. Please visit https://docs.google.com/document/d/1U9E6BC3ymV151cfs4AQplDujlGCgAxSv0jYeL7DE34U/edit?tab=t.0 
+
+
+6. Week 1 Project: https://github.com/libp2p/py-libp2p/issues/489 
+ Issue Name : Update Documentation: Correct Example for Running ping 
+Description: This issue was reported to the maintainer along with the proposed solution. Issue fixed, closed and merged. I was promoted to co-maintainer in py-libp2p after the completion of this issue.
+
+
+7. Project Name: Testing the Universal Connectivity app
+     Link: https://github.com/libp2p/universal-connectivity
+     Progress: Tested the universal connectivity app and shared test results in the JS-libp2p maintainer's meeting last Tuesday. Will be opening 3 issues for the app on specific browsers and operating systems.
+
+
+8. Week 1 Project: https://github.com/seetadev/js-libp2p-example-webrtc-private-to-private
+
+Issue Name: Identify use-cases for webrtc private to private communication.
+
+Progress and Description of the Issue: Identify use-cases for WebRTC private-to-private communication
+Actions Taken:
+Explored WebRTC’s potential for private-to-private communication in decentralized applications.
+Drafted a list of use cases, including:
+Decentralized Video Conferencing: Secure peer-to-peer video calls without intermediaries.
+Gaming Networks: Real-time multiplayer gaming with direct player-to-player connections.
+IoT Communication: Device-to-device communication without external servers.
+File Sharing: Fast and private peer-to-peer file transfers.
+Local Networks: Enabling communication in offline or limited-connectivity environments.
+Analyzed requirements for these use cases, such as NAT traversal, encryption, and scalability.
+
+Next Steps:
+Finalize the list of use cases and prioritize based on feasibility and community interest.
+Begin creating proof-of-concept demos for the most promising applications.
+
+Impact:
+This work aims to highlight WebRTC’s potential in decentralized systems and drive adoption within the libp2p ecosystem.
+
+
+
+
+
+
+",10,"The PLDG programming has been instrumental in fostering collaboration and growth within the ecosystem. I greatly appreciate the structure and resources provided, which make it easier for participants to contribute meaningfully. However, I have a few suggestions to enhance the experience further:
+Focused Onboarding for Cohort Members:
+ While the current onboarding resources are helpful, a more structured onboarding session or workshop for new cohort members focused specifically on contributing to key ecosystems like libp2p would be beneficial. Many new contributors have expressed the need for clear guidance on where and how to start. 
+
+Centralized Contribution Resources:
+ It would be helpful to have a centralized repository of resources for new contributors, such as the PR documentation template I recently shared: please visit at https://docs.google.com/document/d/13xWvDLAucFSC6DXI_2JriKmSSw9bTJGqlJjo01_Ejgg/edit?tab=t.0 . This could include contribution guidelines, issue walkthroughs, and example projects to provide a smooth ramp-up.
+
+Mentorship Opportunities:
+ Creating formal mentorship programs where experienced members can guide newcomers would add tremendous value. Structured mentoring sessions could help contributors navigate challenges and align their contributions with project goals.
+
+Encourage Cohort-Led Sessions:
+ Encouraging experienced cohort members to host knowledge-sharing sessions can accelerate onboarding. I plan to host a session for new members on how to get started with libp2p and believe similar peer-led initiatives would enhance collaboration and learning.
+
+Overall, the program is doing a fantastic job, and these suggestions aim to further streamline the contributor journey, ensuring all members feel supported and empowered.",
+,george-hub331,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,"The kick-off session was most impactful as it clarified the program structure, partner repos, and contribution expectations.",Yes,Coordination Network,"- Talked to Paschal from Coordination.Network, talked about how i can contribute and what issue i can contribute on, He shared docs and repo info",No,,,,,,,,,,,,8,"The PLDG Cohort 2 program has been well-structured so far, with clear communication and a supportive environment for contributors. The kick-off session was particularly insightful, offering a detailed overview of the program's goals, expectations, and partner organizations. It set a solid foundation for understanding how to engage with the repositories effectively.
+
+One suggestion for improvement could be to provide a centralized resource hub or repository with detailed guides on onboarding for each partner.",
+,temi0x,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,Yes,Fil-B,"Spoke with Rishikesh and Sarah about an event being planned in my region
+Began working on a fix for the create-fil-frame CLI",No,,,,,,,,,,,,10,,
+,badgooooor,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",,2 - Actively listened with minimal contributions,I think it is a bit neutral since there's some flow I'm not sure e.g. form I need to fill for update and person in contact that I need to reach out.,Yes,"Libp2p,IPFS",Talk a bit to Manu on libp2p issue (need to discuss more on detail) and worked on frontend issue in IPFS but couldn't find person to review,Yes,1,ipfs/ipfs-webui : Add QR Code to ShareModal #2320,https://github.com/ipfs/ipfs-webui/pull/2320,"- Resolve https://github.com/ipfs/ipfs-webui/issues/1358
+- Add small QR code to ShareModal component",,,,,,,,5,I will keep this week as base first.,
+,virajbhartiya,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,The Weekly Standup helped get to know fellow contributors in PLDG,Yes,Fil-Oz,I was working with Aarsh and Zen from FilOz. I collaborated with Pushpendra from PLDG to work on PDP-Explorer.,Yes,4+,PDP-Explorer,https://github.com/FilOzone/pdp-explorer,"Setup the Indexer and API service to connect with the Filecoin Daemon, Indexer is responsible for filling up the DB. ",PDP-Explorer,https://github.com/FilOzone/pdp-explorer,Connected the Indexer to the Lotus node which fetches the ChainHead and then all the subsequent tipsets and there on the blocks in them and stores them to the Postgres DB. ,PDP-Explorer,https://github.com/FilOzone/pdp-explorer,Working on the Re-Orgs issue which occurs in the Filecoin Chain. to be able to present the current state of the blockchain.,"PDP-Explorer: https://github.com/FilOzone/pdp-explorer
+Creating the API Endpoints for the server so frontend can communicate with the Backend.",10,,
+,Meetjain1,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,No,,,No,,,,,,,,,,,,10,Nothing Right now.,
+,Khwahish29,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"The Cohort 2 Kickoff introduced tech partners and their Web3 roles, providing a solid foundation and aligning my goals with PLDG resources.",Yes,Libp2p,,Yes,1,"Return wrapped network.ErrReset error type with more info #3156
+",https://github.com/libp2p/go-libp2p/issues/3156 ,"I’m working on issue #3156, which involves improving error handling in network transport by returning a wrapped network.ErrReset error type with additional context. The goal is to use the .Unwrap method (following the quic-go approach) to preserve compatibility while providing more detailed transport-specific error information. This enhancement will address problems in the WebTransport and QUIC transports and improve debugging and error traceability.",,,,,,,,10,The program has been fantastic so far!,
+,https://github.com/misskiran,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,All the session were useful . I am spending time learning about the code base and web3 at protoschool.,Yes,IPFS,"I had my queries resolved with Kamui , from PLGD server . After that I joined IPFS server , I am trying to understand their codebase and architecture.",No,,,,,,,,,,,,9,Everyone is really helpful..!!,
+,Prajjawalk,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,8,,
+,Jotthecode,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)",None of the above,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,9,,
+,Jotthecode,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",None of the above,,,No,,,No,,,,,,,,,,,,9,,
+,metalboyrick,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",None of the above,1 - Passively listened but did not contribute ,Did not join any session due to chinese new year,No,,,No,,,,,,,,,,,,5,,
+,hthomp15,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,Yes,Fil-B,I talked to Sarah from Fil-B. I set up a meeting with her to discuss the website they want to build for showcasing past and future filecoin projects.,Yes,2,https://github.com/libp2p/js-libp2p/issues/2112,https://github.com/libp2p/js-libp2p/issues/2112,The functions in the code need to be updated to have proper definitions,Fil-Builders BuidlGuild Like Website,N/A,"I am helping to draft requirements for the website. Techstack, Data model, and lo-fi mockups ",,,,,7,There is just short notice on when things are happening. I might not be aware a meeting exists until 30 mins before the event takes place. ,
+,Jotthecode,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,No,,,Yes,1,,,,,,,,,,,8,,
+,HarshS1611,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"I found weekly standup and js-libp2p maintainer's call quite helpful as in both, I got resources to get started with exploring and contributing.",Yes,"Fil-B,Libp2p","I contacted Sarah from FIL-B, who gave me some good first issues to explore and Manu Gupta regarding js-libp2p, who gave me some helpful resources.",Yes,1, Fil-Frame | SEO optimizations #4,https://github.com/FIL-Builders/fil-frame-landing-page/issues/4,"SEO optimizations :
+1. Update Title to ""FIL Frame | Build Filecoin Apps Faster""
+2. Update Meta Description to ""Zero-configuration CLI tool for building Filecoin apps with ready-to-use React components and storage integrations.""
+3. Update Image Alt Text for FIL-Builders logo in top left to ""FIL Builders Logo""
+4/ Add 5-10 external links from other [fil.org](http://fil.org/), [[filecoin.io](http://filecoin.io/)](http://filecoin.io/), [[github.com](http://github.com/)](http://github.com/) or other domains/subdomain where you control publishing.
+
+The maintainer is on leave so, Sarah told me that he will get back and review the PR from Monday.",,,,,,,,10,,
+,kaf-lamed-beyt,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,Yes,"IPFS,Akave",I communicated with Abhay (akave) via issue comments and Marcin Rataj from (ipfs-shipyard),Yes,2,chore: add web3-utils basic type declaration,https://github.com/akave-ai/akavelink/pull/24,I opened a PR that helps introduce type-safety for the web3-utils module in the akavelink repository.,feat: add dark mode,https://github.com/ipfs/ipfs-webui/pull/2322,"Users of the ipfs-webui complained about the light theme affecting their eyes. My PR aims to fix this. Although, I'm still waiting for feedback from a maintainer",,,,,10,,
+,https://github.com/MOHANKUMAR-IT,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,Yes,Libp2p,"manusheel libp2p , got information where and how to contribute . he replies to most my messages.",Yes,1,"go-libp2p , custom tcp transports ",https://github.com/libp2p/go-libp2p/issues/3155,this is a new feature request to make users provide custom tcp dialers if they wish to setup like proxies,,,,,,,,5,"Could provide strucutured learning path , tasks and progressively going with issues will be the best way .",
+,badgooooor,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,Introduction since I know more on other contributors in cohort and maintainers. Also get some small hints on resource I need to research or study.,Yes,"Libp2p,IPFS","Work on open issue in ipfs-webui (close issue #1358 and  #1798), dive code for issue and discuss with maintainer in go-libp2p (#3095)",Yes,3,[ipfs-webui] Generate/display QR code for sharing,https://github.com/ipfs/ipfs-webui/issues/1358,"Add QR code to share modal, edit user interface from review and close this issue.", [ipfs-webui] Import/export CAR DAG archives,https://github.com/ipfs/ipfs-webui/issues/1798,Add import/export CAR file (currently dive code that needed to update and working on import CAR file which is missing part for this issue),[go-libp2p] Add transport integration tests for circuitv2,https://github.com/libp2p/go-libp2p/issues/3095,"Dive code on integration test and relay test and start adding required tests, also discuss with maintainer since this's a bit new for me",,3,"Currently nothing much. Just some information for harder issue would be nice, at least for someone would like to tackling something harder.",
+,gitsrc,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,No,,,Yes,1,feat(gateway): add configurable response write timeout #812,https://github.com/ipfs/boxo/pull/812，https://github.com/ipfs/boxo/pull/818,"I am submitting a PR to introduce a **configurable response write timeout** for the IPFS gateway, aiming to address the issue raised in #679 by preventing slow clients from indefinitely holding server resources. The timeout can be configured via the `ResponseWriteTimeout` field (default: 30 seconds) and is enforced using a `timeoutResponseWriter` and middleware. I’ve also included comprehensive unit tests and simplified the implementation by avoiding timer resets on successful writes. This PR has already sparked internal discussions within the IPFS team, leading to further refinements. As a result, the changes have evolved from my initial PR (#812) into a more streamlined approach in PR #818. Currently, the PR is awaiting review and approval from the code owner.",,,,,,,,9,,
+,Shradhesh71,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,Filecoin Dogfooding Session,No,,,Yes,1,"Add API Documentation Using Swagger/OpenAPI #12
+",https://github.com/akave-ai/akavelink/issues/12,"Implementation Steps:
+
+Install required packages: swagger-ui-express and swagger-jsdoc
+Create API documentation for all existing endpoints
+Add Swagger UI endpoint",,,,,,,,10,,
+,@Crosstons,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,js-libp2p open maintainers call was super useful because it allowed me to connect directly with the tech partners and all of my queries were answered.,Yes,"Libp2p,Akave","Spoke with Manu about starting with js-libp2p examples; simultaneously, connected with Abhay at Akave for an open issue and drafted a PR.",Yes,1,update : refactor docker file,https://github.com/akave-ai/akavelink/pull/26,This PR address the refactoring of docker file for Typescript compilation.,,,,,,,,10,,
+,d4v1d03,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,i find things getting structured in the weekly standup. It boosts my confidence to work harder and explore each tech partner.,Yes,"Akave,Storacha",had a meet with jamie and alex from storacha and started the work on the w3up-python client. Also started work on akave-pythonsdk,Yes,3,Update docker configuration for typescript,https://github.com/akave-ai/akavelink/pull/25,there was a need of changes in the dockerfile that would lead to the compilation of typescript code,akavesdk-py,https://github.com/akave-ai/akavesdk-py,just  beginning with the work on akave-python sdk by providing the report/scope of work in the first week,w3up-python,https://github.com/cwkang1998/w3up-python,"the python client that was incomplete for w3up, had a meeting with jamie and alex for the same, just beginning with the scope of work.",,10,It's going great in the 3rd week. ,
+,panditdhamdhere,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,Weekly Standup because Jarrod Barnes introduced new tool called cursor which is really helpful.,No,,,No,,,,,,,,,,,,9,,
+,Meetjain1,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)","Weekly Standup,None of the above",3 - Highly engaged,All good,No,,,No,,,,,,,,,,,,10,,
+,adielliot37,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,Yes,Storacha,This week i didnt contributed much as i had my lasik surgery but still i worked on tg miniapp on storacha,Yes,1,tg-mini-app,,updating the API for mini app for verification and storacha upload,,,,,,,,10,,
+,Chaitu-Tatipamula,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,,Yes,Fil-B,"'-manusheel 
+-about the on-ramp contracts (FIL-Builders)
+-shared me some good to start issues.",Yes,1,feat(OnRamp): Add view functions for OnRamp contract,https://github.com/FIL-Builders/onramp-contracts/pull/28,"it is a feature implementation of extra utility functions to get more information and read different statuses of storage requests. added functions like getClientOffers, getPendingOffers, getTotalOffers, getOfferDetails, getOfferStatus etc",,,,,,,,9,Nope.,
+,paschal533,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,DogFooding was impactful because I got to go through the Filecoin website and gave my reviews for improvement.,Yes,"Coordination Network,Fil-B,IPFS",,Yes,4+,fix: improve mobile search UI responsiveness,https://github.com/coordnet/coordnet/pull/413,I mentored a Cohort-2 PLDGer to make his first contribution and create a PR on the Coordination network.,"feat: Add comprehensive test suite for DestChain Contracts, SourceChain Contracts and Token Contract",https://github.com/FIL-Builders/onramp-contracts/pull/26,"This PR adds a comprehensive test suite for:
+
+1. DestChain Contracts.
+2. SourceChain Contracts.
+3. Token Contract.",Feat/improve readme ,https://github.com/FIL-Builders/onramp-contracts/pull/27,This PR improves the README documentation to make it more comprehensive and user-friendly. The changes address the issues mentioned in #21.,"4. Name: Feat: Example Helia Angular
+4. Link: https://github.com/ipfs-examples/helia-examples/pull/425
+4. Description: I worked with Neha to properly configured, setup and resolved Helia to work seamlessly within the Angular application while maintaining good development practices and build optimization.",10,no,
+,https://github.com/misskiran,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",None of the above,2 - Actively listened with minimal contributions,"I usually attend the weekly standup , but I missed this week 's session . I really hope it was good if I could get recording of that session.",Yes,"Libp2p,IPFS",I was surfing  github repository for libp2p  . I made some minimal contributions on the page of  launchpad curriculum.,Yes,1,rearranged the docs and github links #570,https://github.com/protocol/launchpad/pull/570,"While I was referring the launchpad page for learning more about ipfs , libp2p . I got confused with which docs and github link .like which link is for what (as if ipld or filecoin ) . So i just rearranged them in a simpler manner so that no else gets fumbled on it.",,,,,,,,9,,
+,Goddhi,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Weekly Standup, where joore had to share some informative resources on how to get started with understanding IPFS ecosystmem",Yes,Akave,"Abhay, chatted with him on the Akave dev Telegram channel, to request for the Akave github issues Llink, so i can start contibuting,",Yes,2,Akave(Akavelink) Implement Better Error Handling #13  ,https://github.com/akave-ai/akavelink/pull/29  https://github.com/akave-ai/akavelink/pull/28,"Issue 13:  I created a centralized error handling middleware to standardize error responses across the API.
+This ensures consistency in error messages, improves debugging, and enhances the overall developer experience. By handling exceptions in a structured manner, the API can provide clear and meaningful responses while maintaining stability.
+",Akave(Akavelink)  Add Request Rate Limiting #11 on Akavelink, https://github.com/akave-ai/akavelink/pull/28,"Issue 11: Currently, the API doesn't have any rate limiting which could make it vulnerable to abuse. 
+I Implemented a rate limiting using express-rate-limit middleware.
+This restricts the number of requests a client can make within a specified time window, helping to mitigate brute-force attacks and prevent server overload.
+",,,,,10,No,
+,shobit000,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"I found this weekly standup(friday call) call most amazing , as there we got more knowledge about how to raise issues as a first time open source cont",No,,,Yes,1,Filecoin,,I learned from the curriculum pln launchpad ,,,,,,,,10,,
+,Nkovaturient ,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Weekly engagement/community call highlighting on launchpad curriculum, curating a list of gd issues, js-libp2p, helia updates, filecoin gearing. ",Yes,"Libp2p,IPFS,Akave","Jarrod& Manu sir gave insightful views on getting started&roadmap. 
+libp2p call—Russell& Manu sir enlightened us with docs, js-libp2p&guidelines.",Yes,4+,Feat: Add helia angular example,https://github.com/ipfs-examples/helia-examples/pull/425,Integrating helia-angular example by implementing helia's adding & commiting text sevice through angular framework with server side routing,Migrate Express to Typescript ,https://github.com/akave-ai/akavelink/pull/27,"Mostly concerned with migrating the server.js to server.ts into Typescript annotations with well defined type declarations and definitions.
+Solved 2 issues as part of this while worked on migrating index.js to index.ts as well since server.ts depended on AkaveIPIClient configured in index.js",Connecting by PeerID,https://github.com/libp2p/universal-connectivity/issues/207,"Providing alternative way of peer discovery from current ""connect by multiaddrs"" to ""connect peer ID"" providing more feasible way of peer connections ","Other Issues under progress:-
+
+4) Akave web.utils.js and index.js migration issue
+https://github.com/akave-ai/akavelink/issues/18
+
+5) getProviders returns empty array if delegated routing server returns Content Type header that is not equal to ""application/json"" exactly
+https://github.com/ipfs/helia-delegated-routing-v1-http-api/issues/154
+
+6)Helia/remote-pinning-service: Aggregate Err. 
+https://github.com/ipfs/helia/issues/727
+
+",10,,
+,virajbhartiya,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,Yes,Fil-Oz,"I was in contact with Aarsh and Zen from FilOz, we had a meet and discussed a few issue that we were facing while fetching the PDP related logs",Yes,4+,PDP-Explorer,https://github.com/FilOzone/pdp-explorer,"Built the home page and sub pages for the UI, currently static content is being displayed on these, now the backend will be connected",PDP-Explorer,https://github.com/FilOzone/pdp-explorer,"Worked on the Server end of pdp-explorer, finalied the api routes, and created them, connected to the database and added queries to fetch proofs from db. ",PDP-Explorer,https://github.com/FilOzone/pdp-explorer,Worked on fixing the Re-org issues faced and working on how to sync up the db with the current state of chain ,,10,,
+,lordshashank,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Weekly standup was good, got to learn what people are working on and contribute to it",Yes,Fil-Oz,Talked to Zen about raising FIP for DDO wrapper and talked about various DDO workflow and blockers with him.,Yes,1,https://github.com/filecoin-project/FIPs/discussions/1108,https://github.com/filecoin-project/FIPs/discussions/1108,Worked on FIP needed for DDO wrapper to get sector status method on builtin actors,,,,,,,,10,,
+,itsgurmannatsohal,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,The session was very informative and I found the discussions quite impactful for an open source contributor like myself. ,Yes,Akave,Discussef shifting Akave SDKs to Python. Was guided on procedure to follow. I analysed codebase & asked relevant ques.,Yes,2,Create function 'CreateBucket',https://github.com/akave-ai/akavesdk-py/issues/1 ,The Akave SDKs need to be shifted to Python. The 'CreateBucket' function is one of the functionalities provided in the SDK. The issue related to that.,Conversation for function 'CreateBucket',https://github.com/akave-ai/akavesdk-py/pull/2, I started with draft PR. It includes all high level structs & functions needed to convert the 'CreateBucket' function.,,,,,9,N/A,
+,Shanni,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,Yes,Fil-B,,No,,,,,,,,,,,,10,,
+,kenyiu,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,"rust-libp2p maintainers call, which let me have more understandings towards the library and how the maintainers work together.",No,,,No,,,,,,,,,,,,8,,
+,Hany-Almnaem,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Hearing colleagues' ideas, and discussing the use of AI tools, was very insightful and useful.",No,,,No,,,,,,,,,,,,10,The structured approach of the program is great. I’d appreciate more guidance on how to engage with specific projects and team members to maximize contributions.,
+,Dhruv-Varshney-developer,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,Weekly standups were very helpful,No,,,No,,,,,,,,,,,,10,,
+,https://github.com/07Vaishnavi-Singh,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,"In our weekly meeting, I learned from Jarrod about open source basics, including finding issues, submitting pull requests, and collaborating.",Yes,Fil-B,I spoke with LongFei regarding my PR review on the on-ramp contracts. I also discussed a PLDG site issue with Jarrod. ,Yes,2,Upgradable smart contracts (On-ramp contracts fil-B),https://github.com/FIL-Builders/onramp-contracts/issues/22,"The goal is to make the on-ramp contracts upgradeable. I have submitted a PR implementing this using the OpenZeppelin Plugin and am currently discussing the PR review with LongFei on Slack. Once our discussion on the required upgradeability pattern is complete, I will add the necessary scripts and tests.
+","Fix broken link for ""Fil-B Active Issues"" button",https://github.com/jbarnes850/pldg-dashboard/issues/9,"On the Partner Activity Overview page, clicking the Fil-B Active Issues button results in a 404 error instead of redirecting to the intended destination. To reproduce this issue, users navigate to the Partner Activity Overview page and click on the Fil-B Active Issues button, which incorrectly leads to a 404 error page. The expected behavior is that clicking the button should properly redirect users to the corresponding list of active issues for Fil-B. Screenshots of the issue are attached for reference.",,,,,10,Please increase the word limit in this form.,
+,shiyasmohd,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,Joined and talked in rust-libp2p maintainer's call. Got an intro of maintainers and what they are working on,No,,,Yes,1,rust-libp2p,https://github.com/libp2p/rust-libp2p/pull/5841,Migrate tests in quic from async-std to tokio ,,,,,,,,9,,
+,Khwahish29,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,Both js-libp2p & rust-libp2p calls deepened my understanding. The PR discussion (#136) highlighted key contributions.,Yes,Libp2p,"I spoke with Paul Robinson about PRs #499 & #228 and Marco Munizaga about PR #3156, who advised aligning it with PR #2927 for better integration.",Yes,3,update README with better legends #499,https://github.com/libp2p/py-libp2p/pull/499 ,"Issue #475 addressed the README.md legend not displaying correctly on all browsers, particularly Brave. The legend indicating implemented, planned, and in-progress features was not rendering properly. 
+To fix this, I merged a PR that replaced the existing characters with Unicode symbols, ensuring proper display across all browsers.",Move all interfaces to libp2p/abc #228,https://github.com/libp2p/py-libp2p/issues/228 ,"This issue aims to port all interface classes to a single abc.py file (libp2p/abc.py) to avoid circular imports when adding type hints. The approach is based on the example from py-evm, where all interfaces are centralized in one file for better organization and easier imports. The goal is to move the classes without introducing new tests, ensuring existing tests remain functional.",Return wrapped network.ErrReset error type with more info #3156,https://github.com/libp2p/go-libp2p/issues/3156,"It improves error handling by returning a new error type that unwraps to network.ErrReset with added transport details, affecting WebTransport & QUIC.",,10,"The text box limit is quite restrictive, making it difficult to fully explain issues and the work done. It would be helpful to have a larger space to provide more detailed information.",
+,sumanjeet0012,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"js-libp2p open maintainer call - provided roadmap, guidance, best practices of PR, local development setup for new contributors.",Yes,"Drand,Fil-B,Libp2p,Storacha",Contacted Libp2p maintainer Manu regarding universal-connectivity app setup and the Fil-B maintainer for resources to related to Contracts and DApps,Yes,4+,Updated the base node image in Dockerfile,https://github.com/CheckerNetwork/spark-api/pull/508,"The CheckerNetwork/spark-api/ repository was utilizing an outdated LTS version of Node.js, which I needed to upgrade to the latest LTS version to ensure compatibility when running the application via a Dockerfile. Additionally, the testing environment was also based on the old LTS version of Node.js, requiring an update to the latest LTS version for consistency and reliability.",Updated Dockerfile to use node:22-slim as base image,https://github.com/CheckerNetwork/spark-evaluate/pull/464,"The CheckerNetwork/spark-evaluate/ repository was running on an outdated LTS version of Node.js, which required an upgrade to the latest LTS version to ensure smooth execution of the application via a Dockerfile.",Fix: Replace node-fetch with isomorphic-fetch to resolve issue,https://github.com/drand/drand-client/pull/90,The drand/drand-client used node-fetch in its test environment . To improve compatibility I have to replace it with isomorphic-fetch.,"https://github.com/CheckerNetwork/core/pull/673 - Updated the Dockerfile and github workflow CI file for latest LTS node JS. 
+https://github.com/CheckerNetwork/spark-stats/pull/306 - Updated node 20 slim to node 22 slim in Dockerfile.
+",10,They should provide slack and other communication channels links in discord.,
+,0-th,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,Weekly standups are great as I get motivated to keep up with the other participants,Yes,"Libp2p,Storacha,Akave","talked to @dave and @pacrob of pylibp2p about improving the readme and my progress on libp2p docs
+@zentilex DM'd me about the storacha python client.",No,,,,,,,,,,,,10,y'all are awesome,
+,praneetmokkapati,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,rust-libp2p. Dave outlined the various priorities on the project and the interop testing would let everyone understand mature of implementations,Yes,Libp2p,Manu-helped incorporate quic protocol in py-libp2p. Provided him with a code patch. Meeting this week to discuss next steps,Yes,1,QUIC Module Addition,https://github.com/libp2p/py-libp2p/pull/488,Resolved the issues with the pull request and sent the code patch to manu for merging as he was already working on it. Meeting this week to discuss next steps.,,,,,,,,10,"This week was better as everyone could see where we could get started on the various projects. Next week, with AMAs coming up, I'm hoping it would be way better.",
+,Hamza20203064,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,10,,
+,leny62,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,Both libp2p open maintainers calls were impactful as their main focus was to get PLDG members up-to-speed to start working on projects.,No,,,No,,,,,,,,,,,,10,N/A,
+,kamuik16,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,,Yes,"Libp2p,Fil-Oz",,Yes,2,https://github.com/libp2p/rust-libp2p/issues/4449,https://github.com/libp2p/rust-libp2p/pull/5828,Replace async-std with tokio in rust-libp2p.,https://github.com/filecoin-project/lotus/issues/12860,,Add CI runners for linux and mac arm64.,,,,,10,,
+,tesol2y090,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,2 - Actively listened with minimal contributions,rust libp2p call because it's very important to keep update with others contributors.,No,,,Yes,2,Remove unused variable in contracts,https://github.com/FIL-Builders/onramp-contracts/issues/29,remove the unused variable in smart contract.,Upgradable smart contracts,https://github.com/FIL-Builders/onramp-contracts/pull/32,make smart contract upgradable.,,,,,8,,
+,aaravm,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,,,Yes,Fil-B,I messaged Mikers from Fil Builders by introducing myself and telling him about my interest the project Cross-chain data bridge and FVM,No,,,,,,,,,,,,10,,
+,SAMAD101,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",None of the above,1 - Passively listened but did not contribute ,,Yes,Libp2p,"I talked to Manusheel, about contributing to libp2p (Rust and Python). Talked about my contribution. Got good insights and information from him.",Yes,2, List external resources / tutorials on rust-libp2p,https://github.com/libp2p/rust-libp2p/issues/5717 ,"In the first one, I've made a simple example that could potentially be added to the `examples/` folder in rust-libp2p repository for serving as a point of reference or knowledge for newcomers to get to know more about how gossipsub networks have applications in complex distributed systems like blockchains. https://github.com/SAMAD101/chain-gossip/ Talked to Manusheel about this, and he said that it can be added to `examples/`.
+"," Add QUIC Transport Support, QUIC module addition"," https://github.com/libp2p/py-libp2p/issues/463 , https://github.com/libp2p/py-libp2p/pull/488",I reviewed and exchanged some updates and understandings on adding the QUIC module in py-libp2p. I am currently collaborating with Manusheel to work on the respective PR/Issue.,,,,,10,nice,
+,seetadev,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,3 - Highly engaged,"Great insights from Filecoin Dogfooding, libp2p calls & PLDG mentoring! Shared feedback on Filecoin.io & helped new contributors find good issues. 🚀
+",Yes,"Fil-B,IPFS,Libp2p,Fil-Oz","Interacted with libp2p & FIL-B teams, discussed rust/js-libp2p issues with maintainers, guided PLDG members on contributions & issue selection.
+
+
+",Yes,4+,Adding QUIC module to py-libp2p,https://github.com/libp2p/py-libp2p/pull/488,"Weekly Report Summary:
+This week, I made progress on my pull request for Py-libp2p by addressing feedback from Sam and Paul (@pacrob). After receiving test feedback from Sam, I identified the need to debug test and connection errors in tests/core/transports/test_quic.py.
+
+Action Plan and Progress:
+Address issues based on test plans and arrive at key optimal solutions for quic.
+Using pytest to debug and work through errors in the QUIC transport test file.
+Incorporating fixes and updates to the PR based on Sam and Paul's suggestions.
+In the process of implementing code changes.
+
+Next Steps:
+Finalize updates and push the fixes to the pull request.
+Guided Sam to enable code fixes.
+Notify Paul for a follow-up review.
+Continue collaborating with the maintainers to ensure the PR aligns with project standards.
+
+Pointers and test updates from Sam and Paul’s detailed feedback and support have been instrumental in improving the PR and aligning it with the team's expectations.
+",List external ressources / tutorials on rust-libp2p,https://github.com/libp2p/rust-libp2p/issues/5717,"Weekly Project Summary
+This week, I focused on integrating the chain-gossip example into the rust-libp2p repository, specifically addressing the issue outlined in #5717. The goal was to enhance documentation and improve the example's clarity for developers exploring decentralized gossip-based messaging.
+
+Key Updates:
+Refactoring & Documentation: Revised and improved the existing chain-gossip example to ensure better readability and usability. Documented key implementation details to help developers understand its functionality within libp2p.
+Code Alignment with libp2p Standards: Reviewed and updated the example code to align with best practices in rust-libp2p, incorporating feedback from maintainers and existing implementations.
+Discussion & Collaboration: Engaged with the maintainers to clarify aspects of the issue and align the approach with libp2p’s overall development direction.
+
+Next Steps:
+Gather feedback from maintainers and contributors on the revised example.
+Implement suggested improvements and refine the documentation accordingly.
+Explore additional enhancements to make the chain-gossip example more adaptable for real-world applications.
+This work aims to streamline the developer experience by providing a well-documented and structured example, contributing to a more robust and accessible rust-libp2p ecosystem.
+",Clarify Supported Node.js Versions for Hardhat in Documentation,https://github.com/FIL-Builders/onramp-contracts/issues/19,"Highlighted supported versions in OnRamp Contracts docs, discussed issues with Longfei & Sarah, and added an env setup guide.
+","4. Broadcast Loops: https://github.com/libp2p/go-libp2p-pubsub/issues/573
+Issue:
+The pubsub.Tracer lacks a proper Close() method to handle cleanup, which can lead to resource leaks, such as dangling goroutines, when tracers are no longer needed.
+Context:
+Currently, there is no standard way to terminate a tracer gracefully.
+Resource management issues can arise, particularly in long-running applications or during testing.
+Proposed Solution:
+Add a Close() method to pubsub.Tracer to handle resource cleanup properly.
+Ensure that all running goroutines initiated by the tracer are closed upon calling this method.
+Impact:
+Introducing a Close() method will improve resource management, prevent memory leaks, and ensure a cleaner shutdown process for tracers in libp2p-pubsub.
+
+5.  Project: js-libp2p-example-webrtc-private-to-private
+Issue: Identify use-cases for WebRTC private-to-private communication
+Progress and Actions Taken:
+Drafted a list of use cases, including:
+Decentralized Video Conferencing: Secure peer-to-peer video calls without intermediaries.
+Gaming Networks: Real-time multiplayer gaming with direct player-to-player connections.
+IoT Communication: Device-to-device communication without external servers.
+File Sharing: Fast and private peer-to-peer file transfers.
+Local Networks: Enabling communication in offline or limited-connectivity environments.
+Analyzed requirements for these use cases, such as encryption, and scalability.
+Next steps:
+Finalize the list of use cases and prioritize based on feasibility and community interest.
+Begin creating proof-of-concept demos for the most promising applications.
+Impact:
+This work aims to highlight WebRTC’s potential in decentralized systems and drive adoption within the libp2p ecosystem.
+
+6. As a recent co-maintainer and collaborator in py-libp2p, rust-libp2p and go-libp2p modules and networking stack, I reviewed 4 PRs and shared feedback via discord and in the libp2p maintainer's call:
+
+a. https://github.com/libp2p/py-libp2p/pull/495 : This PR is authored by Collins, whom I am guiding on bootstrapping with py-libp2p projects. Shared feedback and asked Collins to take up more simpler issues on py-libp2p before the upcoming release.
+
+b. https://github.com/libp2p/go-libp2p/pull/3096 : This PR is authored by Mohan, who is collaborating with me on go-libp2p projects.
+
+c. https://github.com/libp2p/rust-yamux/pull/197 : This PR is authored by Aryan, who also added me as a collaborator. Please visit https://docs.google.com/document/d/1U9E6BC3ymV151cfs4AQplDujlGCgAxSv0jYeL7DE34U/edit?tab=t.0 
+
+d. https://github.com/libp2p/py-libp2p/issues/358 : Guided Luca on key issues related to implementation of identity protocol implementation.
+",10,"The PLDG Stewards have been doing an incredible job in fostering collaboration, streamlining onboarding, and providing valuable technical guidance. Jarrod’s session on leveraging AI tools for accelerating development and testing in core Filecoin projects was particularly insightful. It showcased how AI can complement developer workflows, enhance efficiency, and improve testing reliability—an area that is crucial for scaling PL projects. 
+
+A few key aspects I really appreciate: 
+- Structured Learning & Knowledge Sharing: Sessions like Jarrod’s make complex topics more accessible, equipping contributors with practical strategies to optimize their workflows. 
+- Engagement & Responsiveness: The Stewards’ active involvement in discussions and feedback loops ensures that contributors get timely support. 
+- Focus on Real-World Use Cases: The integration of AI into development and testing aligns well with industry trends and helps contributors stay ahead. 
+
+Suggestions for further improvement: 
+- More Hands-on Demos: Live coding sessions or guided walkthroughs could help reinforce AI-driven development strategies. 
+- Resource Hub for AI Tools: A dedicated space with recommended AI-powered tools for PL projects could be beneficial. 
+- Continued Focus on Practical Implementations: Encouraging contributors to experiment with AI-driven automation in their own workflows and share insights would further enrich the community. 
+
+Overall, I appreciate the thoughtful approach to PLDG programming and look forward to more sessions like this.
+",
+,silent-cipher,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",None of the above,,,Yes,Fil-Oz,"We had an meet with Aarsh and Zenground, discussing about the progress we made on PDP-explorer and got some feedbacks to implement.",Yes,1,PDP Explorer,https://github.com/FilOzone/pdp-explorer/pull/4,I've worked on implementing handlers for the PDP contract events to store data in postgres.,,,,,,,,8,,
+,george-hub331,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,"The weekly standup was most insightful, providing clarity on contributions, and helping me stay aligned with the cohort's goals.",Yes,Coordination Network,Spoke with Coordination Network team about contributing with TypeScript. They guided me on available issues and how to navigate the codebase,Yes,1,Name of the PR - fix: improve mobile search UI responsiveness,https://github.com/coordnet/coordnet/pull/413,Improved the mobile search UI responsiveness in CoordNet. Enhanced layout and functionality for better usability on mobile devices. (#413),,,,,,,,8,"The program has been insightful so far, and I appreciate the structure.",
+,Prajjawalk,,"Week 3: January 27, 2025 (Monday) – February 2, 2025 (Sunday)",Weekly Standup,1 - Passively listened but did not contribute ,,No,,,No,,,,,,,,,,,,9,,
+,Jiva052,,"Week 2: January 20, 2025 (Monday) – January 26, 2025 (Sunday)","Weekly Standup,AMA with Coordination Network,AMA with Storacha,AMA with IPFS Shipyard,AMA with Libp2p X Drand",1 - Passively listened but did not contribute ,I like the libp2p community call & storacha community call.,No,,,No,,,,,,,,,,,,10,"No, it's community and tech partners are great in interaction and collaboration. So, as of now... things are going well & smooth.",
